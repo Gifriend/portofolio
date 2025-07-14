@@ -4,6 +4,7 @@ import AnimateHeading from "./AnimateHeading"
 import AnimateParagraph from "./AnimateParagraph"
 import AnimateTitle from "./AnimateTitle"
 import SocialMedia from "./SocialMedia"
+import Image from "next/image"
 
 export default function About() {
   return (
@@ -19,7 +20,14 @@ export default function About() {
             wordSpace="mr-[14px]"
             charSpace="mr-[0.0001em]"
           />
-          <AboutGlobeAnimate />
+          <Image
+            src={"/imageProfile.jpg"}
+            width={150}
+            height={150}
+            priority
+            alt="Gifriend Yedija talumingan"
+            className="relative h-[50px] w-[50px] rounded-full object-cover grayscale hover:grayscale-0 md:w-[100px] md:h-[100px] lg:w-[145px] lg:h-[145px]"
+          />
         </div>
 
         <div className="mx-auto flex w-full flex-col lg:max-w-[1200px] lg:flex-row lg:gap-20">
@@ -39,6 +47,7 @@ export default function About() {
         <div className="flex w-full flex-col justify-between gap-4 lg:max-w-[1200px] ">
           {/* <GithubGraph /> */}
           <SocialMedia />
+          <AnimateBody text={"Skills"}/>
         </div>
       </div>
     </section>
