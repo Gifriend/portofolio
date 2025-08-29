@@ -1,9 +1,9 @@
-"use client";
-import { useAnimation, useInView } from "framer-motion";
-import { useEffect, useRef } from "react";
-import { motion } from "framer-motion"
-import { cn } from "@/lib/utils"
-import Image  from "next/image";
+'use client';
+import { useAnimation, useInView } from 'framer-motion';
+import { useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
+import { cn } from '@/lib/utils';
+import Image from 'next/image';
 
 interface AnimateBodyProps {
   text: string;
@@ -14,7 +14,7 @@ interface AnimateBodyProps {
 interface Tech {
   id: number;
   name: string;
-  imageUrl: string ;
+  imageUrl: string;
 }
 
 export default function AnimateBody({
@@ -44,95 +44,95 @@ export default function AnimateBody({
   const techData: Tech[] = [
     {
       id: 1,
-      name: "HTML",
-      imageUrl: "https://cdn-icons-png.flaticon.com/512/1051/1051277.png",
+      name: 'HTML',
+      imageUrl: 'https://cdn-icons-png.flaticon.com/512/1051/1051277.png',
     },
     {
       id: 2,
-      name: "CSS",
-      imageUrl: "https://cdn-icons-png.flaticon.com/512/732/732190.png",
+      name: 'CSS',
+      imageUrl: 'https://cdn-icons-png.flaticon.com/512/732/732190.png',
     },
     {
       id: 3,
-      name: "PHP",
+      name: 'PHP',
       imageUrl:
-        "https://cdn.iconscout.com/icon/free/png-256/free-php-2038871-1720084.png",
+        'https://cdn.iconscout.com/icon/free/png-256/free-php-2038871-1720084.png',
     },
     {
       id: 4,
-      name: "Javascript",
+      name: 'Javascript',
       imageUrl:
-        "https://cdn.icon-icons.com/icons2/2415/PNG/512/javascript_original_logo_icon_146455.png",
+        'https://cdn.icon-icons.com/icons2/2415/PNG/512/javascript_original_logo_icon_146455.png',
     },
     {
       id: 5,
-      name: "Laravel",
-      imageUrl: "https://cdn.worldvectorlogo.com/logos/laravel-2.svg",
+      name: 'Typescript',
+      imageUrl:
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/1200px-Typescript_logo_2020.svg.png',
     },
     {
       id: 6,
-      name: "ReactJS",
+      name: 'ReactJS',
       imageUrl:
-        "https://cdn4.iconfinder.com/data/icons/logos-3/600/React.js_logo-512.png",
+        'https://cdn4.iconfinder.com/data/icons/logos-3/600/React.js_logo-512.png',
     },
     {
       id: 7,
-      name: "Flutter",
-      imageUrl:
-        '/flutter.png',
+      name: 'Vite',
+      imageUrl: 'https://vitejs.dev/logo.svg',
     },
     {
       id: 8,
-      name: "Dart",
-      imageUrl:'/dart.png',
+      name: 'Next.js',
+      imageUrl: '/Next.js.png',
     },
     {
       id: 9,
-      name: "NestJS",
-      imageUrl:
-        '/Nest.js.png',
+      name: 'Flutter',
+      imageUrl: '/flutter.png',
     },
     {
       id: 10,
-      name: "Tailwind",
-      imageUrl:
-        "https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg",
+      name: 'Dart',
+      imageUrl: '/dart.png',
     },
     {
       id: 11,
-      name: "Bootstrap",
-      imageUrl:
-        "https://getbootstrap.com/docs/5.2/assets/brand/bootstrap-logo-shadow.png",
+      name: 'NestJS',
+      imageUrl: '/Nest.js.png',
     },
     {
       id: 12,
-      name: "PostgreSQL",
+      name: 'Tailwind',
       imageUrl:
-        '/postgree.png',
+        'https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg',
     },
     {
-        id: 13,
-        name: "Firebase",
-        imageUrl:
-          '/firebase.png',
-      },
-      {
-        id: 14,
-        name: "Prisma",
-        imageUrl:
-          '/Prisma.png',
-      },
-      {
-        id: 15,
-        name: "Typescript",
-        imageUrl:
-          'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/1200px-Typescript_logo_2020.svg.png',
-      },
+      id: 13,
+      name: 'Bootstrap',
+      imageUrl:
+        'https://getbootstrap.com/docs/5.2/assets/brand/bootstrap-logo-shadow.png',
+    },
+    {
+      id: 14,
+      name: 'PostgreSQL',
+      imageUrl: '/postgree.png',
+    },
+    {
+      id: 15,
+      name: 'Firebase',
+      imageUrl: '/firebase.png',
+    },
+    {
+      id: 16,
+      name: 'Prisma',
+      imageUrl: '/Prisma.png',
+    },
   ];
 
   useEffect(() => {
     if (inView) {
-      ctrls.start("visible");
+      ctrls.start('visible');
     }
   }, [ctrls, inView]);
 
@@ -140,14 +140,12 @@ export default function AnimateBody({
     <>
       <motion.p
         role="heading"
-        className='text-2xl font-bold text-strt text-amber-50 mb-5 md:text-3xl lg:text-4xl xl:text-5xl'
+        className="text-2xl font-bold text-strt text-amber-50 mb-5 md:text-3xl lg:text-4xl xl:text-5xl"
         aria-hidden="true"
         initial="hidden"
         animate={ctrls}
         variants={bodyAnimation}
-        ref={ref}
-
-      >
+        ref={ref}>
         {text}
       </motion.p>
       <div className="px-5 py-5 md:px-12 md:py-10 text-left text-amber-50 mx-3">
