@@ -24,10 +24,9 @@ export const projects = [
     title: "Pulau Derawan",
     description:
       "Website for Derawan Island from the Kawanua Tumoutou team as a brief profile of the village and weather data for Derawan Island",
-    image: "/images/project-3.png",
+    image: "/website-derawan.png",
     tech: ["React", "TypeScript", "Next.js", "TailwindCSS"],
     linkProject: "https://Pulau-Derawan.vercel.app",
-    repo: "",
   },
   {
     id: 4,
@@ -35,8 +34,8 @@ export const projects = [
     title: "MyDerawan",
     description:
       "Mobile APP for Derawan Island, where the main feature of this application is notifications for reminders to go to the integrated health post (posyandu) and our history of going to the integrated health post (posyandu), as well as several guidebooks and chatbots.",
-    image: "/images/project-4.png",
+    image: "/myderawan.png",
     tech: ["Flutter"],
-    linkProject: "https://google.com",
+    linkProject:"https://drive.google.com/drive/folders/17tjkXjfyJu7JADowo0aNkcbC18BbxWpP",
   },
 ]

@@ -16,7 +16,7 @@ export default function Projects() {
             description={project.description}
             image={project.image}
             tech={project.tech}
-            repo={project.repo ?? ""}
+            // repo={project.repo ?? ""}
             projectLink={project.linkProject ?? ''}
           />
         ))}

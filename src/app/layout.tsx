@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Portofolio",
+  title: "Gifriend",
   description: "Gifriend Yedija Talumingan Portofolio",
   icons:{
     icon:'/logo-gif.png',

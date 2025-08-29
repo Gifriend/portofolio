@@ -19,7 +19,7 @@ interface ProjectCardProps {
   description: string
   image: string
   tech: string[]
-  repo: string
+  // repo: string
   projectLink: string
 }
 
@@ -28,7 +28,7 @@ export default function ProjectCard({
   description,
   image,
   tech,
-  repo,
+  // repo,
   projectLink,
 }: ProjectCardProps) {
   const ref = useRef(null)
@@ -75,6 +75,14 @@ export default function ProjectCard({
         className="absolute left-0 top-0 ml-8 mt-6 flex items-center justify-center gap-4 lg:ml-14 lg:mt-10"
       >
         <Sparkles className="h-9 w-9 md:h-11 md:w-11 lg:h-16 lg:w-16" />
+        <Link
+          href={projectLink}
+          target="_blank"
+          className="rounded-full bg-foreground p-2 transition-all duration-300 ease-in-out hover:bg-foreground/50"
+          aria-label="Open Live Demo"
+        >
+          <LinkIcon className="h-6 w-6 text-zinc-100 dark:text-zinc-800 md:h-8 md:w-8 lg:h-10 lg:w-10" />
+        </Link>
       </motion.div>
 
       <div className="absolute left-10 top-32 mb-10 ml-0 text-foreground lg:top-52 lg:mb-14 lg:ml-4">
