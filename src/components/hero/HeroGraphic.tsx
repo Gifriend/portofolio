@@ -9,15 +9,15 @@ import * as THREE from "three"
 function PixelatedSphere() {
   const sphereRef = useRef<THREE.Points>(null)
 
-  useFrame(({ clock }: { clock: any }) => {
+  useFrame(({ clock }) => {
     if (sphereRef.current) {
-      ;(sphereRef.current as any).rotation.y = clock.getElapsedTime() * 1.2
-      ;(sphereRef.current as any).rotation.z = clock.getElapsedTime() * 0.7
+      sphereRef.current.rotation.y = clock.getElapsedTime() * 1.2
+      sphereRef.current.rotation.z = clock.getElapsedTime() * 0.7
     }
   })
 
   return (
-    <points ref={sphereRef as any}>
+    <points ref={sphereRef}>
       <icosahedronGeometry args={[1, 4]} />
       <pointsMaterial color="gray" size={0.05} />
     </points>
@@ -25,25 +25,23 @@ function PixelatedSphere() {
 }
 
 function Birds() {
-  const groupRef = useRef<THREE.Points>(null)
+  const groupRef = useRef<THREE.Group>(null)
 
-  useFrame(({ clock }: { clock: any }) => {
+  useFrame(({ clock }) => {
     if (!groupRef.current) return
     const elapsedTime = clock.getElapsedTime()
-    ;(groupRef.current as any).children.forEach(
-      (
-        bird: { position: { x: number; y: number; z: number } },
-        index: number
-      ) => {
-        const angle = (elapsedTime + index * 0.2) % (2 * Math.PI)
-        const radius = 2.3 + Math.random() * 0.0001
-        bird.position.x =
-          radius * Math.cos(angle) - Math.sin(elapsedTime * 0.5 + index)
-        bird.position.y =
-          radius * Math.sin(angle) * Math.sin(elapsedTime * 0.5 + index)
-        bird.position.z = radius * Math.cos(elapsedTime * 0.5 + index)
-      }
-    )
+
+    groupRef.current.children.forEach((child, index) => {
+      const bird = child as THREE.Mesh<THREE.PlaneGeometry, THREE.MeshBasicMaterial>
+      const angle = (elapsedTime + index * 0.2) % (2 * Math.PI)
+      const radius = 2.3 + Math.random() * 0.0001
+
+      bird.position.x =
+        radius * Math.cos(angle) - Math.sin(elapsedTime * 0.5 + index)
+      bird.position.y =
+        radius * Math.sin(angle) * Math.sin(elapsedTime * 0.5 + index)
+      bird.position.z = radius * Math.cos(elapsedTime * 0.5 + index)
+    })
   })
 
   const birds = [...Array(48)].map((_, i) => {
@@ -56,7 +54,7 @@ function Birds() {
     )
   })
 
-  return <group ref={groupRef as any}>{birds}</group>
+  return <group ref={groupRef}>{birds}</group>
 }
 
 export default function HeroGraphic() {

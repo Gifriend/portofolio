@@ -1,5 +1,5 @@
 "use client"
-import { GithubIcon, LinkIcon, Sparkles } from "lucide-react"
+import { LinkIcon, Sparkles } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 

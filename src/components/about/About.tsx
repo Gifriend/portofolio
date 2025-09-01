@@ -1,6 +1,6 @@
-import AboutGlobeAnimate from "./AboutGlobeAnimate"
+// import AboutGlobeAnimate from "./AboutGlobeAnimate"
 import AnimateBody from "./AnimateBody"
-import AnimateHeading from "./AnimateHeading"
+// import AnimateHeading from "./AnimateHeading"
 import AnimateParagraph from "./AnimateParagraph"
 import AnimateTitle from "./AnimateTitle"
 import SocialMedia from "./SocialMedia"
