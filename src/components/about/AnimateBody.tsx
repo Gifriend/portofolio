@@ -84,7 +84,7 @@ export default function AnimateBody({
     {
       id: 8,
       name: 'Next.js',
-      imageUrl: '/Next.js.png',
+      imageUrl: '/Next.svg',
     },
     {
       id: 9,
@@ -152,7 +152,7 @@ export default function AnimateBody({
         <div className="grid grid-cols-2 gap-4 pb-32 md:grid-cols-3 md:gap-8 xl:grid-cols-4 xl:gap-10 2xl:gap-12">
           {techData.map((item) => (
             <div key={item.id}>
-              <div className="item-tech flex cursor-pointer items-center gap-2 rounded border border-white px-2 py-1 hover:bg-blue-950 hover:bg-opacity-10 md:gap-3 lg:px-3">
+              <div className="item-tech flex cursor-pointer items-center gap-2 rounded border border-white px-2 py-1 bg-zinc-200 dark:bg-zinc-900 hover:opacity-70 md:gap-3 lg:px-3">
                 <div className="flex h-12 w-12 items-center justify-center p-0 lg:h-16 lg:w-16 lg:p-2 zoom-in">
                   <Image
                     alt={item.name}

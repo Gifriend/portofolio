@@ -33,11 +33,11 @@ export default function About() {
         <div className="mx-auto flex w-full flex-col lg:max-w-[1200px] lg:flex-row lg:gap-20">
           <div className="lg:mg-16 mb-10 flex w-full flex-col gap-4 text-[23px] font-medium leading-relaxed tracking-wide md:mb-16 md:gap-6 md:text-[25px] md:leading-relaxed lg:max-w-[90%] lg:text-base">
             <AnimateParagraph
-              paragraph="Nama saya adalah Gifriend Yedija Talumingan, saya adalah seorang programmer yang tertarik dalam bidang web dan mobile. Saat ini, saya sedang menempuh pendidikan di Universitas Sam Ratulangi, Program Studi Teknik Informatika."
+              paragraph="My name is Gifriend Yedija Talumingan, a passionate programmer with a strong interest in both web and mobile development. I am currently pursuing my studies in Informatics Engineering at Sam Ratulangi University."
               delay={1.5}
             />
             <AnimateParagraph
-              paragraph="Keahlian teknis saya melibatkan penguasaan beberapa bahasa pemrograman dan erangka kerja seperti FLutter, React, NextJS dan NestJS. Selain itu, saya juga memiliki pengalaman dengan database seperti MySQL dan PostgreSQL, serta pemahaman mendalam tentang penggunaan alat-alat produktivitas seperti VSCode, XAMPP, Ms Office, Postman dan Git. Dengan kombinasi keterampilan teknis dan kemampuan berkomunikasi yang baik, saya siap untuk menghadirkan kontribusi positif dalam setiap proyek yang saya jalani. Saya sangat antusisas untuk belajar da berkembang dalam dunia tenologi. Terima kasih atas kunjungan Anda ke portofolio saya, saya berharap dapat berkontribusi dalam proyek-proyek yang dapat memberikan manfaat di masa mendatang."
+              paragraph="My technical expertise includes proficiency in various programming languages and frameworks such as Flutter, React, Next.js, and NestJS. I also have hands-on experience with databases like MySQL and PostgreSQL, along with solid knowledge of productivity tools including VS Code, XAMPP, Microsoft Office, Postman, and Git. Combining strong technical skills with effective communication, I am committed to delivering positive contributions to every project I work on. I am highly enthusiastic about continuous learning and growth in the tech industry. Thank you for visiting my portfolio—I look forward to contributing to meaningful projects that create real impact."
               delay={1.8}
             />
 

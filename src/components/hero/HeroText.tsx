@@ -22,7 +22,7 @@ export default function HeroText() {
               ease: [0.2, 0.65, 0.3, 0.9],
             },
           }}
-          className="absolute bottom-8 mx-auto cursor-pointer md:bottom-20 xl:bottom-28"
+          className="absolute bottom-8 mx-auto cursor-pointer md:bottom-20 xl:bottom-28 m-2.5"
         >
           <Image
             src={"/imageProfile.jpg"}
