@@ -84,7 +84,7 @@ export default function AnimateBody({
     {
       id: 8,
       name: 'Next.js',
-      imageUrl: '/Next.svg',
+      imageUrl: '/next.svg',
     },
     {
       id: 9,
