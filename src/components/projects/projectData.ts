@@ -15,7 +15,7 @@ export const projects = [
     title: "TRACKMEL",
     description:
       "This application is designed for PLN staff to make it easier to record and manage electricity meters. With this app, staff can log meters that are damaged, keep track of those scheduled for repair, and update the status once repairs are completed. By using the application, the entire process becomes faster, more organized, and transparent, while also helping to monitor progress and improve efficiency in the field.",
-    image: "/images/project-2.png",
+    image: "/trackmel-pln.png",
     tech: ["Flutter"],
   },
   {
