@@ -41,7 +41,7 @@ export default function AnimateParagraph({
   }
 
   return (
-    <p className={cn("text-sm", className)}>
+    <p className={cn("text-sm text-inherit", className)}>
       <motion.span
         ref={ref}
         aria-hidden="true"

@@ -49,7 +49,7 @@ export default function AnimateTitle({
   }
 
   return (
-    <h2 aria-label={title} role="heading" className={className}>
+    <h2 aria-label={title} role="heading" className={className} style={{ color: 'var(--foreground)' }}>
       {title.split(" ").map((word, i) => (
         <motion.span
           key={i}
@@ -64,7 +64,7 @@ export default function AnimateTitle({
           }}
           className={cn("inline-block whitespace-nowrap", wordSpace)}
         >
-          {word.split(" ").map((char, i) => (
+          {word.split("").map((char, i) => (
             <motion.span 
             aria-hidden="true"
             variants={charAnimation}

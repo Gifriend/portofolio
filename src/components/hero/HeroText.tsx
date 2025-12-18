@@ -8,7 +8,7 @@ export default function HeroText() {
       <div className="relative flex flex-col items-center justify-center">
         <AnimateWords
           title="GIFRIEND YEDIJA TALUMINGAN"
-          style="inline-block overflow-hidden pt-1 -mr-4 sm:-mr-5 md:-mr-7 lg:-mr-9 -mb-1 sm:-mb-2 md:-mb-3 lg:-mb-4"
+          style="inline-block overflow-hidden pt-1 -mr-4 sm:-mr-5 md:-mr-7 lg:-mr-9 -mb-1 sm:-mb-2 md:-mb-3 lg:-mb-4 text-[var(--foreground)"
         />
         <motion.div
           initial={{ y: 50, opacity: 0, scale: 0.8 }}
@@ -24,14 +24,14 @@ export default function HeroText() {
           }}
           className="absolute bottom-8 mx-auto cursor-pointer md:bottom-20 xl:bottom-28 m-2.5"
         >
-          <Image
+          {/* <Image
             src={"/imageProfile.jpg"}
             width={150}
             height={150}
             priority
-            alt="Afrizal Mufriz Fouji"
+            alt="Gifriend Yedija Talumingan"
             className="h-full w-[100px] rounded-[16px] grayscale hover:grayscale-0 md:w-[200px] md:rounded-[32px] lg:w-[245px]"
-          />
+          /> */}
         </motion.div>
       </div>
     </div>
