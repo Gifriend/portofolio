@@ -9,7 +9,7 @@ export default function Hero() {
   return (
     <motion.section
       id="hero"
-      className="relative z-10 flex min-h-screen w-full flex-col items-center justify-center"
+      className="relative z-10 flex min-h-screen w-full flex-col items-center justify-center overflow-hidden"
       initial="initial"
       animate="animate"
     >

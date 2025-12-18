@@ -140,7 +140,7 @@ export default function AnimateBody({
     <>
       <motion.p
         role="heading"
-        className="text-2xl font-bold text-strt text-amber-50 mb-5 md:text-3xl lg:text-4xl xl:text-5xl"
+        className="text-2xl font-bold text-strt md:text-3xl lg:text-4xl xl:text-5xl"
         aria-hidden="true"
         initial="hidden"
         animate={ctrls}
