@@ -28,25 +28,25 @@ const socialMedia = [
   {
     icon: Github,
     label: "GitHub",
-    href: "https://github.com/yourusername",
+    href: "https://github.com/Gifriend",
     color: "hover:text-gray-900 dark:hover:text-white"
   },
   {
     icon: Linkedin,
     label: "LinkedIn",
-    href: "https://linkedin.com/in/yourusername",
+    href: "https://www.linkedin.com/in/gifriendtalumingan/",
     color: "hover:text-blue-600"
   },
   {
     icon: Instagram,
     label: "Instagram",
-    href: "https://instagram.com/yourusername",
+    href: "https://www.instagram.com/gifriendt_/",
     color: "hover:text-pink-600"
   },
   {
     icon: Facebook,
     label: "Facebook",
-    href: "https://facebook.com/yourusername",
+    href: "https://www.facebook.com/gifriend",
     color: "hover:text-blue-700"
   }
 ]
@@ -80,13 +80,13 @@ export default function ContactInfo() {
       <div>
         <motion.h3
           variants={itemVariants}
-          className="text-2xl md:text-3xl font-bold mb-4 text-gray-900 dark:text-zinc-100"
+          className="text-2xl md:text-3xl font-bold mb-4"
         >
           Let's Talk
         </motion.h3>
         <motion.p
           variants={itemVariants}
-          className="text-gray-600 dark:text-gray-400 leading-relaxed"
+          className=" leading-relaxed"
         >
           I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions. 
           Feel free to reach out through any of the channels below.
@@ -104,18 +104,18 @@ export default function ContactInfo() {
               <detail.icon className="w-6 h-6 text-white" />
             </div>
             <div>
-              <p className="text-sm text-gray-500 dark:text-gray-400 font-medium">
+              <p className="text-sm  font-medium">
                 {detail.label}
               </p>
               {detail.href ? (
                 <a
                   href={detail.href}
-                  className="text-gray-900 dark:text-zinc-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                  className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                 >
                   {detail.value}
                 </a>
               ) : (
-                <p className="text-gray-900 dark:text-zinc-100">{detail.value}</p>
+                <p className="">{detail.value}</p>
               )}
             </div>
           </motion.div>
