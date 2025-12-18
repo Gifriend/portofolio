@@ -68,7 +68,7 @@ export default function Navbar() {
                 e.preventDefault()
                 handleNavClick("#home")
               }}
-              className="text-2xl font-bold bg-clip-text"
+              className={cn("text-2xl font-bold bg-clip-text", isScrolled ? "text-black dark:text-gray-300" : "")}
             >
               Gifriend
             </a>
@@ -92,7 +92,8 @@ export default function Navbar() {
                     "px-3 py-2 rounded-md text-sm font-medium transition-all duration-300",
                     "hover:bg-gray-100 dark:hover:bg-zinc-800",
                     "hover:text-blue-600 dark:hover:text-blue-400",
-                    "relative group"
+                    "relative group",
+                    isScrolled ? "text-black dark:text-gray-300" : ""
                   )}
                 >
                   {item.name}
