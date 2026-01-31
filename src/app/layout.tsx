@@ -15,26 +15,82 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Gifriend Talumingan - Web Developer & Frontend Engineer Portfolio",
-  description: "Portfolio profesional Gifriend Yedija Talumingan - Experienced Web Developer specializing in React, Next.js, TypeScript, and modern frontend technologies. Explore my projects, skills, and creative web solutions with stunning animations and responsive design.",
-  keywords: ["Web Developer", "Frontend Developer","Mobile Developer", "Backend Developer", "React Developer", "Next.js", "TypeScript", "Flutter", "Dart","Portfolio", "Gifriend Talumingan"],
-  authors: [{ name: "Gifriend Yedija Talumingan" }],
+  metadataBase: new URL('https://gifriendt.my.id'),
+  title: {
+    default: "Gifriend Talumingan - Full Stack Developer & Software Engineer",
+    template: "%s | Gifriend Talumingan Portfolio"
+  },
+  description: "Professional portfolio of Gifriend Yedija Talumingan - Full Stack Developer specializing in React, Next.js, TypeScript, Flutter, NestJS, and modern web/mobile development. Explore innovative projects with cutting-edge technologies, clean code architecture, and responsive design. Based in Manado, Indonesia.",
+  keywords: [
+    "Gifriend Talumingan",
+    "Gifriend Yedija Talumingan",
+    "Full Stack Developer",
+    "Web Developer",
+    "Frontend Developer",
+    "Mobile Developer",
+    "Backend Developer",
+    "React Developer",
+    "Next.js Developer",
+    "TypeScript Developer",
+    "Flutter Developer",
+    "NestJS Developer",
+    "Software Engineer",
+    "Portfolio Website",
+    "Manado Developer",
+    "Indonesia Developer",
+    "Sam Ratulangi University",
+    "Informatics Engineering",
+    "PostgreSQL",
+    "Prisma",
+    "Tailwind CSS"
+  ],
+  authors: [{ name: "Gifriend Yedija Talumingan", url: "https://gifriendt.my.id" }],
   creator: "Gifriend Yedija Talumingan",
+  publisher: "Gifriend Yedija Talumingan",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
-    title: "Gifriend Talumingan - Web Developer Portfolio",
-    description: "Experienced Web Developer specializing in React, Next.js, and modern frontend technologies. View my projects and creative solutions.",
+    url: "https://gifriendt.my.id",
     siteName: "Gifriend Talumingan Portfolio",
+    title: "Gifriend Talumingan - Full Stack Developer & Software Engineer",
+    description: "Professional portfolio showcasing full stack development projects using React, Next.js, TypeScript, Flutter, NestJS and modern technologies. Explore my work in web and mobile development.",
+    images: [
+      {
+        url: "/imageProfile.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Gifriend Talumingan - Full Stack Developer Portfolio",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Gifriend Talumingan - Web Developer Portfolio",
-    description: "Experienced Web Developer specializing in React, Next.js, and modern frontend technologies.",
+    title: "Gifriend Talumingan - Full Stack Developer & Software Engineer",
+    description: "Professional portfolio showcasing full stack development projects using React, Next.js, TypeScript, Flutter, NestJS and modern technologies.",
+    creator: "@gifriendt_",
+    images: ["/imageProfile.jpg"],
   },
-  icons:{
-    icon:'/logo-gif.png',
-  }
+  icons: {
+    icon: '/logo-gif.png',
+    shortcut: '/logo-gif.png',
+    apple: '/logo-gif.png',
+  },
+  manifest: '/site.webmanifest',
+  alternates: {
+    canonical: "https://gifriendt.my.id",
+  },
+  category: 'technology',
 };
 
 export default function RootLayout({

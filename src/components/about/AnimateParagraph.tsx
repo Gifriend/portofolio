@@ -27,13 +27,13 @@ export default function AnimateParagraph({
   const AnimationParagraph = {
     hidden: {
       opacity: 0,
-      y: `1em`,
+      y: `0.5em`,
     },
     visible: {
       opacity: 1,
       y: `0em`,
       transition: {
-        duration: 1.8,
+        duration: 0.6,
         delay: delay,
         ease: [0.2, 0.65, 0.3, 0.9],
       },

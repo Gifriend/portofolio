@@ -36,13 +36,13 @@ export default function AnimateTitle({
   const charAnimation = {
     hidden: {
       opacity: 0,
-      y: `1em`,
+      y: `0.5em`,
     },
     visible: {
       opacity: 1,
       y: `0em`,
       transition: {
-        duration: 2.8,
+        duration: 0.8,
         ease: [0.2, 0.65, 0.3, 0.9],
       }
     }
@@ -59,8 +59,8 @@ export default function AnimateTitle({
           animate={ctrls}
           variants={wordAnimation}
           transition={{
-            delayChildren: i * 0.25,
-            staggerChildren: 0.05,
+            delayChildren: i * 0.08,
+            staggerChildren: 0.03,
           }}
           className={cn("inline-block whitespace-nowrap", wordSpace)}
         >

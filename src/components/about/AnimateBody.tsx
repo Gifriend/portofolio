@@ -29,17 +29,35 @@ export default function AnimateBody({
   const bodyAnimation = {
     hidden: {
       opacity: 0,
-      y: `1em`,
+      y: `0.5em`,
     },
     visible: {
       opacity: 1,
       y: `0em`,
       transition: {
-        duration: 2,
+        duration: 0.6,
         delay: delay,
         ease: [0.2, 0.65, 0.3, 0.9],
       },
     },
+  };
+
+  const cardAnimation = {
+    hidden: {
+      opacity: 0,
+      scale: 0.8,
+      y: 20,
+    },
+    visible: (index: number) => ({
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      transition: {
+        duration: 0.4,
+        delay: index * 0.05,
+        ease: [0.2, 0.65, 0.3, 0.9],
+      },
+    }),
   };
   const techData: Tech[] = [
     {
@@ -150,26 +168,46 @@ export default function AnimateBody({
       </motion.p>
       <div className="px-5 py-5 md:px-12 md:py-10 text-left text-amber-50 mx-3">
         <div className="grid grid-cols-2 gap-4 pb-32 md:grid-cols-3 md:gap-8 xl:grid-cols-4 xl:gap-10 2xl:gap-12">
-          {techData.map((item) => (
-            <div key={item.id}>
-              <div className="item-tech flex cursor-pointer items-center gap-2 rounded border border-white px-2 py-1 bg-zinc-200 dark:bg-zinc-900 hover:opacity-70 md:gap-3 lg:px-3">
-                <div className="flex h-12 w-12 items-center justify-center p-0 lg:h-16 lg:w-16 lg:p-2 zoom-in">
-                  <Image
-                    alt={item.name}
-                    width={50}
-                    height={50}
-                    loading="lazy"
-                    className="img-tech drop-shadow-xl transition-all duration-300 h-[65%] w-[65%] lg:h-[85%] lg:w-[85%]"
-                    src={item.imageUrl}
-                  />
+          {techData.map((item, index) => (
+            <motion.div 
+              key={item.id}
+              custom={index}
+              initial="hidden"
+              animate="visible"
+              variants={cardAnimation}
+              whileHover={{ 
+                scale: 1.05,
+                y: -5,
+                transition: { duration: 0.2 }
+              }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <div className="item-tech flex cursor-pointer items-center gap-2 rounded-xl border border-gray-200 dark:border-zinc-700 px-2 py-3 bg-white dark:bg-zinc-800 shadow-md hover:shadow-xl transition-all duration-300 md:gap-3 lg:px-3 lg:py-4 group relative overflow-hidden">
+                {/* Gradient hover overlay */}
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-purple-500/0 to-pink-500/0 group-hover:from-blue-500/10 group-hover:via-purple-500/10 group-hover:to-pink-500/10 transition-all duration-500 rounded-xl" />
+                
+                <div className="relative flex h-12 w-12 items-center justify-center p-0 lg:h-16 lg:w-16 lg:p-2">
+                  <motion.div
+                    whileHover={{ rotate: [0, -10, 10, -10, 0] }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    <Image
+                      alt={item.name}
+                      width={50}
+                      height={50}
+                      loading="lazy"
+                      className="img-tech drop-shadow-xl transition-all duration-300 h-[65%] w-[65%] lg:h-[85%] lg:w-[85%] group-hover:drop-shadow-2xl"
+                      src={item.imageUrl}
+                    />
+                  </motion.div>
                 </div>
-                <div className="flex items-center text-sm md:text-base lg:text-lg">
-                  <div className="tech font-medium text-white transition-all duration-300 translate-y-0">
+                <div className="relative flex items-center text-sm md:text-base lg:text-lg">
+                  <div className="tech font-semibold text-gray-800 dark:text-zinc-200 transition-all duration-300 group-hover:text-gray-900 dark:group-hover:text-white">
                     {item.name}
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

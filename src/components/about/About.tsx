@@ -34,11 +34,11 @@ export default function About() {
           <div className="lg:mg-16 mb-10 flex w-full flex-col gap-4 text-[23px] font-medium leading-relaxed tracking-wide md:mb-16 md:gap-6 md:text-[25px] md:leading-relaxed lg:max-w-[90%] lg:text-base">
             <AnimateParagraph
               paragraph="My name is Gifriend Yedija Talumingan, a passionate programmer with a strong interest in both web and mobile development. I am currently pursuing my studies in Informatics Engineering at Sam Ratulangi University."
-              delay={1.5}
+              delay={0.2}
             />
             <AnimateParagraph
               paragraph="My technical expertise includes proficiency in various programming languages and frameworks such as Flutter, React, Next.js, and NestJS. I also have hands-on experience with databases like MySQL and PostgreSQL, along with solid knowledge of productivity tools including VS Code, XAMPP, Microsoft Office, Postman, and Git. Combining strong technical skills with effective communication, I am committed to delivering positive contributions to every project I work on. I am highly enthusiastic about continuous learning and growth in the tech industry. Thank you for visiting my portfolio—I look forward to contributing to meaningful projects that create real impact."
-              delay={1.8}
+              delay={0.3}
             />
 
           </div>
