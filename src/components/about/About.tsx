@@ -1,10 +1,10 @@
 // import AboutGlobeAnimate from "./AboutGlobeAnimate"
-import AnimateBody from "./AnimateBody"
+import AnimateBody from "./AnimateBody";
 // import AnimateHeading from "./AnimateHeading"
-import AnimateParagraph from "./AnimateParagraph"
-import AnimateTitle from "./AnimateTitle"
-import SocialMedia from "./SocialMedia"
-import Image from "next/image"
+import AnimateParagraph from "./AnimateParagraph";
+import AnimateTitle from "./AnimateTitle";
+import SocialMedia from "./SocialMedia";
+import Image from "next/image";
 
 export default function About() {
   return (
@@ -33,23 +33,26 @@ export default function About() {
         <div className="mx-auto flex w-full flex-col lg:max-w-[1200px] lg:flex-row lg:gap-20">
           <div className="lg:mg-16 mb-10 flex w-full flex-col gap-4 text-[23px] font-medium leading-relaxed tracking-wide md:mb-16 md:gap-6 md:text-[25px] md:leading-relaxed lg:max-w-[90%] lg:text-base">
             <AnimateParagraph
-              paragraph="My name is Gifriend Yedija Talumingan, a passionate programmer with a strong interest in both web and mobile development. I am currently pursuing my studies in Informatics Engineering at Sam Ratulangi University."
+              paragraph="My name is Gifriend Yedija Talumingan, a final-year Informatics Engineering student at Sam Ratulangi University with a strong passion for Software Development. I enjoy building scalable, user-focused digital solutions across multiple platforms including web and mobile applications. Throughout my academic journey and project experience, I have worked on various systems ranging from real-time applications and organizational platforms to operational tools used in real industry environments."
               delay={0.2}
             />
             <AnimateParagraph
-              paragraph="My technical expertise includes proficiency in various programming languages and frameworks such as Flutter, React, Next.js, and NestJS. I also have hands-on experience with databases like MySQL and PostgreSQL, along with solid knowledge of productivity tools including VS Code, XAMPP, Microsoft Office, Postman, and Git. Combining strong technical skills with effective communication, I am committed to delivering positive contributions to every project I work on. I am highly enthusiastic about continuous learning and growth in the tech industry. Thank you for visiting my portfolio—I look forward to contributing to meaningful projects that create real impact."
+              paragraph="My technical experience includes developing mobile applications using Flutter and Dart, building modern web interfaces with Next.js and React, and designing backend services using technologies such as NestJS and PostgreSQL. I have hands-on experience integrating RESTful APIs, implementing structured state management, and applying clean and maintainable development practices to create reliable and scalable software systems."
               delay={0.3}
             />
-
+            <AnimateParagraph
+              paragraph="I am passionate about continuous learning and exploring new technologies across the software development ecosystem. My goal is to grow as a versatile Software Developer who can contribute to impactful products by building efficient, scalable, and meaningful digital solutions."
+              delay={0.3}
+            />
           </div>
         </div>
 
         <div className="flex w-full flex-col justify-between gap-4 lg:max-w-[1200px] ">
           {/* <GithubGraph /> */}
           <SocialMedia />
-          <AnimateBody text={"Skills"}/>
+          <AnimateBody text={"Skills"} />
         </div>
       </div>
     </section>
-  )
+  );
 }

@@ -100,7 +100,7 @@ export default function ContactInfo() {
             variants={itemVariants}
             className="flex items-start space-x-4"
           >
-            <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+            <div className="flex-shrink-0 w-12 h-12 bg-bg-card dark:bg-black rounded-lg flex items-center justify-center">
               <detail.icon className="w-6 h-6 text-white" />
             </div>
             <div>

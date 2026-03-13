@@ -146,6 +146,16 @@ export default function AnimateBody({
       name: 'Prisma',
       imageUrl: '/Prisma.png',
     },
+    {
+      id: 17,
+      name: 'Supabase',
+      imageUrl: '/Supabase.svg',
+    },
+    {
+      id: 18,
+      name: 'Svelte',
+      imageUrl: '/Svelte.svg',
+    },
   ];
 
   useEffect(() => {
