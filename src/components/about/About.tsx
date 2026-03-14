@@ -15,7 +15,7 @@ export default function About() {
       <div className="mx-auto flex w-[90%] flex-col items-start justify-center lg:max-w-[1212.8px]">
         <div className="mb-10 flex w-full items-center justify-between gap-x-2 md:mb-16">
           <AnimateTitle
-            title={"About me"}
+            title={"Get to know me"}
             className="text-left text-[40px] font-bold leading-[0.9em] tracking-tighter sm:text-[45px] md:text-[60px] lg:text-[80px]"
             wordSpace="mr-[14px]"
             charSpace="mr-[0.0001em]"
