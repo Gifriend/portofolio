@@ -18,7 +18,7 @@ const nextConfig: NextConfig = {
       {
         source: "/inspire",
         destination:
-          "https://github.com/USERNAME/REPO/releases/latest/download/app-release.apk",
+          "https://github.com/Gifriend/inspire/releases/latest/download/app-release.apk",
         permanent: false,
       },
     ];
