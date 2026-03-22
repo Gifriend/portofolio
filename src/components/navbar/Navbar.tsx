@@ -49,7 +49,7 @@ export default function Navbar() {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled
-          ? "backdrop-blur-md bg-white/80 dark:bg-zinc-900/80 shadow-lg"
+          ? "backdrop-blur-md bg[--background] shadow-lg"
           : "bg-transparent"
       )}
     >
@@ -68,7 +68,7 @@ export default function Navbar() {
                 e.preventDefault()
                 handleNavClick("#home")
               }}
-              className={cn("text-2xl font-bold bg-clip-text", isScrolled ? "text-black dark:text-gray-300" : "")}
+              className={cn("text-2xl font-bold bg-clip-text", isScrolled ? "text-[--foreground]" : "")}
             >
               Gifriend
             </a>
@@ -91,13 +91,13 @@ export default function Navbar() {
                   className={cn(
                     "px-3 py-2 rounded-md text-sm font-medium transition-all duration-300",
                     "hover:bg-gray-100 dark:hover:bg-zinc-800",
-                    "hover:text-blue-600 dark:hover:text-blue-400",
+                    "hover:text-black",
                     "relative group",
-                    isScrolled ? "text-black dark:text-gray-300" : ""
+                    isScrolled ? "text-[--foreground]" : ""
                   )}
                 >
                   {item.name}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 group-hover:w-full" />
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-black transition-all duration-300 group-hover:w-full" />
                 </motion.a>
               ))}
               
@@ -129,7 +129,7 @@ export default function Navbar() {
             <motion.button
               whileTap={{ scale: 0.95 }}
               onClick={toggleTheme}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-zinc-800 focus:outline-none transition-colors"
+              className="inline-flex items-center justify-center p-2 rounded-md text-foreground hover:text-black hover:bg-gray-100 dark:hover:bg-zinc-800 focus:outline-none transition-colors"
               aria-label="Toggle theme"
             >
               {theme === "dark" ? (
@@ -142,7 +142,7 @@ export default function Navbar() {
             <motion.button
               whileTap={{ scale: 0.95 }}
               onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-zinc-800 focus:outline-none transition-colors"
+              className="inline-flex items-center justify-center p-2 rounded-md text-[--foreground] hover:text-black hover:bg-gray-100 dark:hover:bg-zinc-800 focus:outline-none transition-colors"
             >
               <span className="sr-only">Open main menu</span>
               {isOpen ? (
@@ -165,7 +165,7 @@ export default function Navbar() {
         transition={{ duration: 0.3, ease: "easeInOut" }}
         className="md:hidden overflow-hidden"
       >
-        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 backdrop-blur-md bg-white/95 dark:bg-zinc-900/95 border-t border-gray-200 dark:border-zinc-800">
+        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 backdrop-blur-md bg-[--background] border-t border-gray-200 dark:border-zinc-800">
           {navItems.map((item, index) => (
             <motion.a
               key={item.name}
@@ -179,9 +179,9 @@ export default function Navbar() {
               transition={{ delay: isOpen ? 0.1 * index : 0 }}
               className={cn(
                 "block px-3 py-2 rounded-md text-base font-medium transition-all duration-300",
-                "text-gray-700 dark:text-gray-300",
+                "text-[--foreground]",
                 "hover:bg-gray-100 dark:hover:bg-zinc-800",
-                "hover:text-blue-600 dark:hover:text-blue-400"
+                "hover:text-black"
               )}
             >
               {item.name}

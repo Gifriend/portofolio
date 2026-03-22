@@ -163,7 +163,7 @@ export default function AnimateBody({
                   variants={cardAnimation}
                   whileHover={{ scale: 1.05, y: -5 }}
                 >
-                  <div className="flex items-center gap-3 rounded-xl border border-gray-200 dark:border-zinc-700 px-3 py-3 bg-white dark:bg-zinc-800 shadow-md hover:shadow-xl transition-all">
+                  <div className="flex items-center gap-3 rounded-xl border border-gray-200 dark:border-zinc-700 px-3 py-3 bg-[--background] shadow-md hover:shadow-xl transition-all">
                     <div className="flex h-10 w-10 items-center justify-center">
                       <Image
                         alt={item.name}
@@ -173,7 +173,7 @@ export default function AnimateBody({
                       />
                     </div>
 
-                    <span className="font-medium text-gray-800 dark:text-zinc-200">
+                    <span className="font-medium text-foreground ">
                       {item.name}
                     </span>
                   </div>

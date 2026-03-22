@@ -123,7 +123,7 @@ export default function ContactInfo() {
       </motion.div>
 
       <motion.div variants={itemVariants} className="pt-8">
-        <h4 className="text-lg font-semibold mb-4 text-gray-900 dark:text-zinc-100">
+        <h4 className="text-lg font-semibold mb-4 text-foreground">
           Follow Me
         </h4>
         <div className="flex space-x-4">
@@ -135,7 +135,7 @@ export default function ContactInfo() {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.1, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              className={`w-12 h-12 bg-gray-100 dark:bg-zinc-800 rounded-lg flex items-center justify-center text-gray-600 dark:text-gray-400 transition-all duration-300 ${social.color} shadow-sm hover:shadow-md`}
+              className={`w-12 h-12 bg-background rounded-lg border border-border flex items-center justify-center text-foreground transition-all duration-300 ${social.color} shadow-sm hover:shadow-md`}
               aria-label={social.label}
             >
               <social.icon className="w-5 h-5" />

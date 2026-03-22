@@ -48,7 +48,7 @@ export default function ProjectCard({
       initial="hidden"
       variants={projectCardAnimation}
       aria-hidden="true"
-      className="group relative z-10 h-auto min-h-[550px] md:h-[550px] w-full flex flex-col md:flex-row items-stretch justify-center overflow-hidden rounded-3xl border border-gray-200 dark:border-zinc-700 bg-gradient-to-br from-white to-gray-50 dark:from-zinc-800 dark:to-zinc-900 shadow-lg hover:shadow-2xl transition-all duration-500 ease-in-out hover:scale-[1.02]"
+      className="group relative z-10 h-auto min-h-[550px] md:h-[550px] w-full flex flex-col md:flex-row items-stretch justify-center overflow-hidden rounded-3xl border border-border dark:border-zinc-700 bg-background shadow-lg hover:shadow-2xl transition-all duration-500 ease-in-out hover:scale-[1.02]"
     >
       {/* Content Section */}
       <div className="relative z-20 flex flex-col justify-between p-6 md:p-8 lg:p-10 w-full md:w-1/2">
@@ -61,33 +61,33 @@ export default function ProjectCard({
           aria-hidden="true"
           className="flex items-center justify-start gap-4 mb-6"
         >
-          <Sparkles className="h-8 w-8 md:h-10 md:w-10 lg:h-12 lg:w-12 text-gray-900 dark:text-zinc-100 group-hover:rotate-12 transition-transform duration-300" />
+          <Sparkles className="h-8 w-8 md:h-10 md:w-10 lg:h-12 lg:w-12 text-foreground group-hover:rotate-12 transition-transform duration-300" />
           <Link
             href={projectLink}
             target="_blank"
-            className="rounded-full bg-gray-800 dark:bg-zinc-100 p-2 md:p-2.5 transition-all duration-300 ease-in-out hover:bg-gray-700 dark:hover:bg-zinc-200 hover:scale-110 shadow-md hover:shadow-lg"
+            className="rounded-full bg-background p-2 md:p-2.5 transition-all duration-300 ease-in-out hover:bg-gray-700 dark:hover:bg-zinc-200 hover:scale-110 shadow-md hover:shadow-lg"
             aria-label="Open Live Demo"
           >
-            <LinkIcon className="h-5 w-5 text-white dark:text-zinc-800 md:h-6 md:w-6 lg:h-7 lg:w-7" />
+            <LinkIcon className="h-5 w-5 text-foreground md:h-6 md:w-6 lg:h-7 lg:w-7" />
           </Link>
         </motion.div>
 
         {/* Text Content */}
         <div className="flex-1 flex flex-col justify-center space-y-4">
-          <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-gray-900 dark:text-zinc-100 max-w-full">
+          <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-foreground max-w-full">
             <motion.span
               ref={ref}
               animate={ctrls}
               initial="hidden"
               variants={projectCardTitleAnimation}
               aria-hidden="true"
-              className="bg-gradient-to-r from-gray-900 to-gray-700 dark:from-zinc-100 dark:to-zinc-300 bg-clip-text text-transparent"
+              className="text-foreground"
             >
               {title}
             </motion.span>
           </h3>
           
-          <p className="text-sm md:text-base font-medium text-gray-600 dark:text-zinc-400 max-w-full leading-relaxed">
+          <p className="text-sm md:text-base font-medium text-foreground max-w-full leading-relaxed">
             <motion.span
               ref={ref}
               animate={ctrls}
@@ -110,7 +110,7 @@ export default function ProjectCard({
             {tech.map((techItem, index) => (
               <span
                 key={index}
-                className="px-3 py-1.5 text-xs md:text-sm font-semibold text-gray-700 dark:text-zinc-300 bg-gray-100 dark:bg-zinc-700 rounded-full border border-gray-200 dark:border-zinc-600 hover:bg-gray-200 dark:hover:bg-zinc-600 transition-colors duration-200"
+                className="px-3 py-1.5 text-xs md:text-sm font-semibold text-foreground hover:text-black bg-background dark:bg-zinc-700 rounded-full border border-border hover:bg-gray-200 dark:hover:bg-zinc-900 transition-colors duration-200"
               >
                 {techItem}
               </span>

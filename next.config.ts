@@ -13,15 +13,5 @@ const nextConfig: NextConfig = {
       "getbootstrap.com",
     ],
   },
-  async redirects() {
-    return [
-      {
-        source: "/inspire",
-        destination:
-          "https://github.com/Gifriend/inspire/releases/latest/download/app-release.apk",
-        permanent: false,
-      },
-    ];
-  },
 };
 export default nextConfig;
