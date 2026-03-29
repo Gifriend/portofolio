@@ -1,45 +1,45 @@
-"use client"
+"use client";
 
-import { cn } from "@/lib/utils"
-import { motion, useScroll, useTransform } from "framer-motion"
-import { Menu, X, Sun, Moon } from "lucide-react"
-import { useEffect, useState } from "react"
-import { useTheme } from "@/components/ThemeProvider"
+import { cn } from "@/lib/utils";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { Menu, X, Sun, Moon } from "lucide-react";
+import { useEffect, useState } from "react";
+import { useTheme } from "@/components/ThemeProvider";
 
 const navItems = [
   { name: "Home", href: "#home" },
   { name: "About", href: "#about" },
   { name: "Projects", href: "#projects" },
   { name: "Contact", href: "#contact" },
-]
+];
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
-  const { theme, toggleTheme } = useTheme()
-  const { scrollY } = useScroll()
+  const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const { theme, toggleTheme } = useTheme();
+  const { scrollY } = useScroll();
   const backgroundColor = useTransform(
     scrollY,
     [0, 100],
-    ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0.8)"]
-  )
+    ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0.8)"],
+  );
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
+      setIsScrolled(window.scrollY > 50);
+    };
 
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handleNavClick = (href: string) => {
-    setIsOpen(false)
-    const element = document.querySelector(href)
+    setIsOpen(false);
+    const element = document.querySelector(href);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
+      element.scrollIntoView({ behavior: "smooth" });
     }
-  }
+  };
 
   return (
     <motion.nav
@@ -50,7 +50,7 @@ export default function Navbar() {
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled
           ? "backdrop-blur-md bg[--background] shadow-lg"
-          : "bg-transparent"
+          : "bg-transparent",
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -65,10 +65,15 @@ export default function Navbar() {
             <a
               href="#home"
               onClick={(e) => {
-                e.preventDefault()
-                handleNavClick("#home")
+                e.preventDefault();
+                handleNavClick("#home");
               }}
-              className={cn("text-2xl font-bold bg-clip-text", isScrolled ? "text-[--foreground]" : "")}
+              className={cn(
+                "text-2xl font-bold p-2 rounded-t transition-all duration-300",
+                "hover:bg-gray-100 dark:hover:bg-zinc-800",
+                "hover:text-white dark:hover:text-white",
+                isScrolled ? "text-[--foreground]" : "",
+              )}
             >
               Gifriend
             </a>
@@ -82,8 +87,8 @@ export default function Navbar() {
                   key={item.name}
                   href={item.href}
                   onClick={(e) => {
-                    e.preventDefault()
-                    handleNavClick(item.href)
+                    e.preventDefault();
+                    handleNavClick(item.href);
                   }}
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -91,16 +96,16 @@ export default function Navbar() {
                   className={cn(
                     "px-3 py-2 rounded-md text-sm font-medium transition-all duration-300",
                     "hover:bg-gray-100 dark:hover:bg-zinc-800",
-                    "hover:text-black",
+                    "hover:text-white dark:hover:text-white",
                     "relative group",
-                    isScrolled ? "text-[--foreground]" : ""
+                    isScrolled ? "text-[--foreground]" : "",
                   )}
                 >
                   {item.name}
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-black transition-all duration-300 group-hover:w-full" />
                 </motion.a>
               ))}
-              
+
               {/* Theme Toggle Button */}
               <motion.button
                 initial={{ opacity: 0, y: -20 }}
@@ -111,7 +116,7 @@ export default function Navbar() {
                 className={cn(
                   "p-2 rounded-md transition-all duration-300",
                   "text-gray-700 dark:text-gray-300",
-                  "hover:bg-gray-100 dark:hover:bg-zinc-800"
+                  "hover:bg-gray-100 dark:hover:bg-zinc-800 hover:text-white dark:hover:text-white",
                 )}
                 aria-label="Toggle theme"
               >
@@ -138,7 +143,7 @@ export default function Navbar() {
                 <Moon className="block h-5 w-5" />
               )}
             </motion.button>
-            
+
             <motion.button
               whileTap={{ scale: 0.95 }}
               onClick={() => setIsOpen(!isOpen)}
@@ -171,8 +176,8 @@ export default function Navbar() {
               key={item.name}
               href={item.href}
               onClick={(e) => {
-                e.preventDefault()
-                handleNavClick(item.href)
+                e.preventDefault();
+                handleNavClick(item.href);
               }}
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: isOpen ? 1 : 0, x: isOpen ? 0 : -20 }}
@@ -181,7 +186,7 @@ export default function Navbar() {
                 "block px-3 py-2 rounded-md text-base font-medium transition-all duration-300",
                 "text-[--foreground]",
                 "hover:bg-gray-100 dark:hover:bg-zinc-800",
-                "hover:text-black"
+                "hover:text-black",
               )}
             >
               {item.name}
@@ -190,5 +195,5 @@ export default function Navbar() {
         </div>
       </motion.div>
     </motion.nav>
-  )
+  );
 }
