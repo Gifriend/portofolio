@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-const APK_URL = 'https://github.com/Gifriend/inspire/releases/latest/download/app-release.apk';
+const APK_URL = 'https://github.com/Gifriend/inspire/releases/download/latest/app-release.apk';
 
 type DownloadState = 'idle' | 'started' | 'error';
 
