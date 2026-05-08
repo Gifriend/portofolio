@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import { useEffect, useState } from 'react';
 
@@ -40,10 +40,19 @@ export default function InspireDownloadPage() {
   }[downloadState];
 
   return (
-    <main style={{ minHeight: '100vh', display: 'grid', placeItems: 'center', background: 'linear-gradient(115deg, var(--secondary), var(--muted-bg))', padding: '1.5rem' }}>
-      <section style={{ width: '100%', maxWidth: '560px', background: 'var(--card-bg)', border: '1px solid var(--card-border)', borderRadius: '20px', boxShadow: '0 16px 40px rgba(0,0,0,0.16)', color: 'var(--foreground)', padding: '1.6rem 1.8rem', textAlign: 'center' }}>
-        <h1 style={{ margin: '0', fontSize: 'clamp(1.7rem, 4vw, 2.3rem)', letterSpacing: '0.7px', fontWeight: 700 }}>Download Aplikasi Inspire</h1>
-        <p style={{ color: 'var(--muted)', fontSize: '1rem', margin: '1rem 0 1.25rem', lineHeight: 1.5 }}>
+    <main style={{ minHeight: '100vh', display: 'grid', placeItems: 'center', background: 'var(--background)', padding: '1.5rem' }}>
+      <section style={{
+        width: '100%',
+        maxWidth: '560px',
+        background: 'var(--card-bg)',
+        border: '3px solid var(--border)',
+        boxShadow: '6px 6px 0px var(--shadow-color)',
+        color: 'var(--foreground)',
+        padding: '2rem',
+        textAlign: 'center',
+      }}>
+        <h1 style={{ margin: '0', fontSize: 'clamp(1.7rem, 4vw, 2.3rem)', letterSpacing: '0.7px', fontWeight: 900, textTransform: 'uppercase' }}>Download Aplikasi Inspire</h1>
+        <p style={{ color: 'var(--muted)', fontSize: '1rem', margin: '1rem 0 1.25rem', lineHeight: 1.5, fontWeight: 500 }}>
           Halaman ini akan otomatis mengarahkan Anda ke file APK dalam beberapa saat. Jika tidak terjadi, gunakan tombol di bawah.
         </p>
 
@@ -52,25 +61,54 @@ export default function InspireDownloadPage() {
           onClick={onDownloadClick}
           disabled={downloadState === 'error' || downloadState === 'started'}
           style={{
-            border: 'none',
-            borderRadius: '10px',
+            border: '3px solid var(--border)',
             padding: '0.95rem 1.25rem',
-            fontWeight: 700,
+            fontWeight: 900,
             cursor: downloadState === 'error' ? 'not-allowed' : 'pointer',
-            background: downloadState === 'error' ? 'var(--muted)' : 'var(--foreground)',
-            color: 'var(--background)',
-            transition: 'transform 0.2s ease, opacity 0.2s ease',
+            background: downloadState === 'error' ? 'var(--muted)' : 'var(--accent)',
+            color: 'var(--foreground)',
+            boxShadow: '4px 4px 0px var(--shadow-color)',
+            transition: 'transform 0.15s ease, box-shadow 0.15s ease',
             width: '100%',
             marginBottom: '0.9rem',
-            opacity: downloadState === 'started' ? 0.85 : 1,
+            textTransform: 'uppercase',
+            letterSpacing: '0.05em',
           }}
-          onMouseDown={(e) => { if (downloadState !== 'error') e.currentTarget.style.transform = 'scale(0.98)'; }}
-          onMouseUp={(e) => { if (downloadState !== 'error') e.currentTarget.style.transform = 'scale(1)'; }}
+          onMouseEnter={(e) => {
+            if (downloadState !== 'error') {
+              e.currentTarget.style.transform = 'translate(-2px, -2px)';
+              e.currentTarget.style.boxShadow = '6px 6px 0px var(--shadow-color)';
+            }
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'translate(0, 0)';
+            e.currentTarget.style.boxShadow = '4px 4px 0px var(--shadow-color)';
+          }}
+          onMouseDown={(e) => {
+            if (downloadState !== 'error') {
+              e.currentTarget.style.transform = 'translate(4px, 4px)';
+              e.currentTarget.style.boxShadow = '0px 0px 0px var(--shadow-color)';
+            }
+          }}
+          onMouseUp={(e) => {
+            if (downloadState !== 'error') {
+              e.currentTarget.style.transform = 'translate(-2px, -2px)';
+              e.currentTarget.style.boxShadow = '6px 6px 0px var(--shadow-color)';
+            }
+          }}
         >
           {buttonText}
         </button>
 
-        <div style={{ marginTop: '1rem', background: 'var(--muted-bg)', borderRadius: '10px', padding: '0.8rem', color: 'var(--muted)' }}>
+        <div style={{
+          marginTop: '1rem',
+          background: 'var(--accent)',
+          border: '3px solid var(--border)',
+          boxShadow: '3px 3px 0px var(--shadow-color)',
+          padding: '0.8rem',
+          color: 'var(--foreground)',
+          fontWeight: 600,
+        }}>
           <strong>Catatan:</strong> Jika unduhan tidak segera dimulai, pastikan pop-up tidak diblokir dan Anda menggunakan perangkat yang mendukung file APK.
         </div>
       </section>

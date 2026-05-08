@@ -1,5 +1,5 @@
 "use client";
-import { LinkIcon, Sparkles } from "lucide-react";
+import { LinkIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -19,21 +19,32 @@ interface ProjectCardProps {
   description: string;
   image: string;
   tech: string[];
-  // repo: string
   projectLink: string;
 }
+
+const accentColors = [
+  'var(--accent)',
+  'var(--accent-pink)',
+  'var(--accent-blue)',
+  'var(--accent-orange)',
+  'var(--accent-lime)',
+  'var(--accent-purple)',
+];
 
 export default function ProjectCard({
   title,
   description,
   image,
   tech,
-  // repo,
   projectLink,
 }: ProjectCardProps) {
   const ref = useRef(null);
   const isInView = useInView(ref);
   const ctrls = useAnimation();
+
+  // Generate a consistent color based on title
+  const colorIndex = title.length % accentColors.length;
+  const accentColor = accentColors[colorIndex];
 
   useEffect(() => {
     if (isInView) {
@@ -49,10 +60,26 @@ export default function ProjectCard({
         initial="hidden"
         variants={projectCardAnimation}
         aria-hidden="true"
-        className="group relative z-10 h-auto min-h-[550px] md:h-[550px] w-full flex flex-col md:flex-row items-stretch justify-center overflow-hidden rounded-3xl border border-border dark:border-zinc-700 bg-background shadow-lg hover:shadow-2xl transition-all duration-500 ease-in-out hover:scale-[1.02]"
+        className="group relative z-10 h-auto min-h-[550px] md:h-[550px] w-full flex flex-col md:flex-row items-stretch justify-center overflow-hidden transition-all duration-200"
+        style={{
+          border: 'var(--nb-border)',
+          boxShadow: 'var(--nb-shadow-lg)',
+          background: 'var(--card-bg)',
+        }}
+        whileHover={{
+          x: -4,
+          y: -4,
+          boxShadow: "10px 10px 0px var(--shadow-color)",
+        }}
       >
+        {/* Accent top bar */}
+        <div
+          className="absolute top-0 left-0 right-0 h-2 z-30"
+          style={{ background: accentColor }}
+        />
+
         {/* Content Section */}
-        <div className="relative z-20 flex flex-col justify-between p-6 md:p-8 lg:p-10 w-full md:w-1/2">
+        <div className="relative z-20 flex flex-col justify-between p-6 md:p-8 lg:p-10 w-full md:w-1/2 pt-8">
           {/* Header with icons */}
           <motion.div
             ref={ref}
@@ -62,18 +89,31 @@ export default function ProjectCard({
             aria-hidden="true"
             className="flex items-center justify-start gap-4 mb-6"
           >
-            <Sparkles className="h-8 w-8 md:h-10 md:w-10 lg:h-12 lg:w-12 text-foreground group-hover:rotate-12 transition-transform duration-300" />
             <span
-              className="rounded-full bg-background p-2 md:p-2.5 transition-all duration-300 ease-in-out group-hover:bg-gray-700 dark:group-hover:bg-zinc-200 group-hover:scale-110 shadow-md group-hover:shadow-lg"
+              className="p-2.5 transition-all duration-200"
+              style={{
+                border: 'var(--nb-border)',
+                boxShadow: 'var(--nb-shadow)',
+                background: accentColor,
+              }}
               aria-label="Open Live Demo"
             >
-              <LinkIcon className="h-5 w-5 text-foreground md:h-6 md:w-6 lg:h-7 lg:w-7" />
+              <LinkIcon className="h-5 w-5 md:h-6 md:w-6 text-[--foreground]" />
+            </span>
+            <span
+              className="text-xs font-black uppercase tracking-widest px-3 py-1"
+              style={{
+                border: '2px solid var(--border)',
+                background: 'var(--card-bg)',
+              }}
+            >
+              Live Project →
             </span>
           </motion.div>
 
           {/* Text Content */}
           <div className="flex-1 flex flex-col justify-center space-y-4">
-            <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-foreground max-w-full">
+            <h3 className="text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-tight leading-tight text-foreground max-w-full">
               <motion.span
                 ref={ref}
                 animate={ctrls}
@@ -109,7 +149,12 @@ export default function ProjectCard({
               {tech.map((techItem, index) => (
                 <span
                   key={index}
-                  className="px-3 py-1.5 text-xs md:text-sm font-semibold text-foreground hover:text-background bg-background rounded-full border border-border hover:bg-foreground transition-colors duration-200"
+                  className="px-3 py-1.5 text-xs font-black uppercase tracking-wide text-[--foreground] transition-all duration-200"
+                  style={{
+                    border: '2px solid var(--border)',
+                    boxShadow: '2px 2px 0px var(--shadow-color)',
+                    background: index % 2 === 0 ? 'var(--card-bg)' : accentColor,
+                  }}
                 >
                   {techItem}
                 </span>
@@ -127,17 +172,21 @@ export default function ProjectCard({
           aria-hidden="true"
           className="relative w-full md:w-1/2 h-[250px] md:h-full flex items-center justify-center p-4 md:p-6"
         >
-          <div className="relative w-full h-full rounded-xl overflow-hidden shadow-xl group-hover:shadow-2xl transition-shadow duration-500">
+          <div
+            className="relative w-full h-full overflow-hidden transition-all duration-200"
+            style={{
+              border: 'var(--nb-border)',
+              boxShadow: 'var(--nb-shadow)',
+            }}
+          >
             <Image
               width={1000}
               height={600}
               src={image}
               alt={title}
-              className="w-full h-full object-cover md:object-contain rounded-xl group-hover:scale-105 transition-transform duration-500"
+              className="w-full h-full object-cover md:object-contain group-hover:scale-105 transition-transform duration-500"
               loading="lazy"
             />
-            {/* Gradient overlay for better image blend */}
-            <div className="absolute inset-0 bg-gradient-to-t from-gray-900/10 to-transparent dark:from-zinc-900/20 pointer-events-none rounded-xl" />
           </div>
         </motion.div>
       </motion.div>

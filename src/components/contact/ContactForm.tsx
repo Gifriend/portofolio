@@ -61,19 +61,26 @@ export default function ContactForm() {
     }
   }
 
+  const inputClasses = "w-full px-4 py-3 border-[3px] border-[--border] bg-[--background] text-[--foreground] font-medium shadow-[3px_3px_0px_var(--shadow-color)] focus:shadow-[5px_5px_0px_var(--shadow-color)] focus:translate-x-[-2px] focus:translate-y-[-2px] transition-all duration-200 outline-none placeholder:text-[--muted] placeholder:font-medium"
+
   return (
     <motion.div
       initial={{ opacity: 0, x: 50 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="bg-background rounded-2xl shadow-lg dark:shadow-zinc-800/50 p-8 border border-border"
+      className="p-8"
+      style={{
+        border: 'var(--nb-border)',
+        boxShadow: 'var(--nb-shadow-lg)',
+        background: 'var(--card-bg)',
+      }}
     >
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
           <label
             htmlFor="name"
-            className="block text-sm font-medium text-foreground mb-2"
+            className="block text-sm font-black uppercase tracking-wider text-foreground mb-2"
           >
             Name
           </label>
@@ -84,7 +91,7 @@ export default function ContactForm() {
             value={formData.name}
             onChange={handleChange}
             required
-            className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all outline-none"
+            className={inputClasses}
             placeholder="Your name"
           />
         </div>
@@ -92,7 +99,7 @@ export default function ContactForm() {
         <div>
           <label
             htmlFor="email"
-            className="block text-sm font-medium text-foreground mb-2"
+            className="block text-sm font-black uppercase tracking-wider text-foreground mb-2"
           >
             Email
           </label>
@@ -103,7 +110,7 @@ export default function ContactForm() {
             value={formData.email}
             onChange={handleChange}
             required
-            className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all outline-none"
+            className={inputClasses}
             placeholder="your.email@example.com"
           />
         </div>
@@ -111,7 +118,7 @@ export default function ContactForm() {
         <div>
           <label
             htmlFor="subject"
-            className="block text-sm font-medium text-foreground mb-2"
+            className="block text-sm font-black uppercase tracking-wider text-foreground mb-2"
           >
             Subject
           </label>
@@ -122,7 +129,7 @@ export default function ContactForm() {
             value={formData.subject}
             onChange={handleChange}
             required
-            className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all outline-none"
+            className={inputClasses}
             placeholder="What's this about?"
           />
         </div>
@@ -130,7 +137,7 @@ export default function ContactForm() {
         <div>
           <label
             htmlFor="message"
-            className="block text-sm font-medium text-foreground mb-2"
+            className="block text-sm font-black uppercase tracking-wider text-foreground mb-2"
           >
             Message
           </label>
@@ -141,7 +148,7 @@ export default function ContactForm() {
             onChange={handleChange}
             required
             rows={6}
-            className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all outline-none resize-none"
+            className={`${inputClasses} resize-none`}
             placeholder="Tell me about your project..."
           />
         </div>
@@ -150,9 +157,15 @@ export default function ContactForm() {
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg text-green-800 dark:text-green-300 text-sm"
+            className="p-4 text-sm font-bold"
+            style={{
+              border: '3px solid #22c55e',
+              boxShadow: '4px 4px 0px #166534',
+              background: '#dcfce7',
+              color: '#166534',
+            }}
           >
-            Message sent successfully! I'll get back to you soon.
+            ✓ Message sent successfully! I'll get back to you soon.
           </motion.div>
         )}
 
@@ -160,18 +173,29 @@ export default function ContactForm() {
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg text-red-800 dark:text-red-300 text-sm"
+            className="p-4 text-sm font-bold"
+            style={{
+              border: '3px solid #ef4444',
+              boxShadow: '4px 4px 0px #991b1b',
+              background: '#fee2e2',
+              color: '#991b1b',
+            }}
           >
-            Something went wrong. Please try again or email me directly.
+            ✗ Something went wrong. Please try again or email me directly.
           </motion.div>
         )}
 
         <motion.button
           type="submit"
           disabled={isSubmitting}
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          className="w-full px-8 py-4 bg-foreground text-background font-medium rounded-lg hover:shadow-lg transition-all duration-300 flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
+          whileHover={{ x: -3, y: -3 }}
+          whileTap={{ x: 4, y: 4 }}
+          className="w-full px-8 py-4 font-black uppercase tracking-wider text-[--foreground] flex items-center justify-center space-x-3 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+          style={{
+            border: 'var(--nb-border)',
+            boxShadow: 'var(--nb-shadow-lg)',
+            background: 'var(--accent)',
+          }}
         >
           {isSubmitting ? (
             <span>Sending...</span>

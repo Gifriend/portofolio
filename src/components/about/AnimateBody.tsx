@@ -2,7 +2,6 @@
 import { useAnimation, useInView } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-// import { cn } from '@/lib/utils';
 import Image from "next/image";
 
 interface AnimateBodyProps {
@@ -19,12 +18,12 @@ interface Tech {
 
 interface TechCategory {
   title: string;
+  color: string;
   techs: Tech[];
 }
 
 export default function AnimateBody({
   text,
-  // className,
   delay,
 }: AnimateBodyProps) {
   const ref = useRef(null);
@@ -64,9 +63,11 @@ export default function AnimateBody({
       },
     }),
   };
+
   const techCategories: TechCategory[] = [
     {
       title: "Mobile Development",
+      color: "var(--accent-pink)",
       techs: [
         { id: 1, name: "Flutter", imageUrl: "/flutter.png" },
         { id: 2, name: "Dart", imageUrl: "/dart.png" },
@@ -74,6 +75,7 @@ export default function AnimateBody({
     },
     {
       title: "Frontend Development",
+      color: "var(--accent)",
       techs: [
         { id: 3, name: "Next.js", imageUrl: "/next.svg" },
         { id: 4, name: "Vite", imageUrl: "/vite-logo.png" },
@@ -108,6 +110,7 @@ export default function AnimateBody({
     },
     {
       title: "Backend Development",
+      color: "var(--accent-blue)",
       techs: [
         { id: 10, name: "NestJS", imageUrl: "/Nest.js.png" },
         { id: 11, name: "Laravel", imageUrl: "/Laravel.svg" },
@@ -118,6 +121,7 @@ export default function AnimateBody({
     },
     {
       title: "Tools & Services",
+      color: "var(--accent-lime)",
       techs: [
         { id: 15, name: "Firebase", imageUrl: "/firebase.png" },
         { id: 16, name: "Supabase", imageUrl: "/Supabase.svg" },
@@ -135,7 +139,7 @@ export default function AnimateBody({
     <>
       <motion.p
         role="heading"
-        className="text-2xl font-bold text-strt md:text-3xl lg:text-4xl xl:text-5xl"
+        className="text-2xl font-black uppercase tracking-tight text-start md:text-3xl lg:text-4xl xl:text-5xl mb-4"
         aria-hidden="true"
         initial="hidden"
         animate={ctrls}
@@ -144,16 +148,24 @@ export default function AnimateBody({
       >
         {text}
       </motion.p>
-      <div className="px-5 py-10 md:px-12 text-amber-50 mx-3 space-y-12">
+      <div className="py-8 space-y-10">
         {techCategories.map((category, categoryIndex) => (
           <div key={categoryIndex}>
             {/* Category Title */}
-            <h3 className="mb-6 text-xl font-semibold text-foreground md:text-2xl">
+            <h3
+              className="mb-6 text-lg font-black uppercase tracking-wider md:text-xl px-4 py-2 inline-block"
+              style={{
+                border: 'var(--nb-border)',
+                boxShadow: 'var(--nb-shadow)',
+                background: category.color,
+                color: 'var(--foreground)',
+              }}
+            >
               {category.title}
             </h3>
 
             {/* Skills Grid */}
-            <div className="grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-4">
+            <div className="grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-4 mt-4">
               {category.techs.map((item, index) => (
                 <motion.div
                   key={item.id}
@@ -161,10 +173,21 @@ export default function AnimateBody({
                   initial="hidden"
                   animate="visible"
                   variants={cardAnimation}
-                  whileHover={{ scale: 1.05, y: -5 }}
+                  whileHover={{
+                    y: -4,
+                    x: -2,
+                    boxShadow: "6px 6px 0px var(--shadow-color)",
+                  }}
                 >
-                  <div className="flex items-center gap-3 rounded-xl border border-gray-200 dark:border-zinc-700 px-3 py-3 bg-[--background] shadow-md hover:shadow-xl transition-all">
-                    <div className="flex h-10 w-10 items-center justify-center">
+                  <div
+                    className="flex items-center gap-3 px-4 py-3 transition-all duration-200"
+                    style={{
+                      border: 'var(--nb-border)',
+                      boxShadow: 'var(--nb-shadow)',
+                      background: 'var(--card-bg)',
+                    }}
+                  >
+                    <div className="flex h-10 w-10 items-center justify-center shrink-0">
                       <Image
                         alt={item.name}
                         width={40}
@@ -173,7 +196,7 @@ export default function AnimateBody({
                       />
                     </div>
 
-                    <span className="font-medium text-foreground ">
+                    <span className="font-bold text-foreground uppercase tracking-wide text-sm">
                       {item.name}
                     </span>
                   </div>

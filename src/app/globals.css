@@ -2,30 +2,50 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #09090b; 
+  --foreground: #1a1a2e;
   --card-bg: #ffffff;
-  --card-border: #e4e4e7;
-  --primary: #18181b; 
-  --primary-hover: #27272a;
-  --secondary: #f4f4f5; 
-  --accent: #e4e4e7;
-  --muted: #71717a;
-  --muted-bg: #f4f4f5;
-  --border: #e4e4e7;
+  --card-border: #1a1a2e;
+  --primary: #1a1a2e;
+  --primary-hover: #16213e;
+  --secondary: #f0f0f0;
+  --accent: #FFE156;
+  --accent-pink: #FF6B9D;
+  --accent-blue: #4ECDC4;
+  --accent-orange: #FF8A5C;
+  --accent-lime: #C5FF4A;
+  --accent-purple: #A855F7;
+  --muted: #6b7280;
+  --muted-bg: #f5f5f5;
+  --border: #1a1a2e;
+  --shadow-color: #1a1a2e;
+  --nb-border: 3px solid #1a1a2e;
+  --nb-shadow: 4px 4px 0px #1a1a2e;
+  --nb-shadow-lg: 6px 6px 0px #1a1a2e;
+  --nb-shadow-hover: 8px 8px 0px #1a1a2e;
 }
 
 .dark {
-  --background: #09090b; 
-  --foreground: #fafafa; 
-  --card-bg: #09090b;
-  --card-border: #27272a;
-  --primary: #fafafa; 
+  --background: #1a1a2e;
+  --foreground: #fafafa;
+  --card-bg: #16213e;
+  --card-border: #fafafa;
+  --primary: #fafafa;
   --primary-hover: #e4e4e7;
-  --secondary: #27272a;
-  --accent: #27272a;
+  --secondary: #16213e;
+  --accent: #FFE156;
+  --accent-pink: #FF6B9D;
+  --accent-blue: #4ECDC4;
+  --accent-orange: #FF8A5C;
+  --accent-lime: #C5FF4A;
+  --accent-purple: #A855F7;
   --muted: #a1a1aa;
-  --muted-bg: #18181b;
-  --border: #27272a;
+  --muted-bg: #0f3460;
+  --border: #fafafa;
+  --shadow-color: #000000;
+  --nb-border: 3px solid #fafafa;
+  --nb-shadow: 4px 4px 0px #000000;
+  --nb-shadow-lg: 6px 6px 0px #000000;
+  --nb-shadow-hover: 8px 8px 0px #000000;
 }
 
 @theme inline {
@@ -37,6 +57,11 @@
   --color-primary-hover: var(--primary-hover);
   --color-secondary: var(--secondary);
   --color-accent: var(--accent);
+  --color-accent-pink: var(--accent-pink);
+  --color-accent-blue: var(--accent-blue);
+  --color-accent-orange: var(--accent-orange);
+  --color-accent-lime: var(--accent-lime);
+  --color-accent-purple: var(--accent-purple);
   --color-muted: var(--muted);
   --color-muted-bg: var(--muted-bg);
   --color-border: var(--border);
@@ -60,29 +85,109 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Neobrutalism Scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--muted-bg);
+  background: var(--background);
+  border-left: var(--nb-border);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--muted);
-  border-radius: 5px;
+  background: var(--accent);
+  border: 2px solid var(--border);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--primary);
+  background: var(--accent-pink);
 }
 
 ::selection {
-  background: var(--foreground);
-  color: var(--background);
+  background: var(--accent);
+  color: var(--foreground);
 }
 
 ::-moz-selection {
-  background: var(--foreground);
-  color: var(--background);
+  background: var(--accent);
+  color: var(--foreground);
+}
+
+/* Neobrutalism utility classes */
+.nb-border {
+  border: var(--nb-border);
+}
+
+.nb-shadow {
+  box-shadow: var(--nb-shadow);
+}
+
+.nb-shadow-lg {
+  box-shadow: var(--nb-shadow-lg);
+}
+
+.nb-shadow-hover:hover {
+  box-shadow: var(--nb-shadow-hover);
+  transform: translate(-2px, -2px);
+}
+
+.nb-card {
+  border: var(--nb-border);
+  box-shadow: var(--nb-shadow);
+  background: var(--card-bg);
+  transition: all 0.2s ease;
+}
+
+.nb-card:hover {
+  box-shadow: var(--nb-shadow-hover);
+  transform: translate(-2px, -2px);
+}
+
+.nb-btn {
+  border: var(--nb-border);
+  box-shadow: var(--nb-shadow);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+
+.nb-btn:hover {
+  box-shadow: var(--nb-shadow-hover);
+  transform: translate(-2px, -2px);
+}
+
+.nb-btn:active {
+  box-shadow: 0px 0px 0px var(--shadow-color);
+  transform: translate(4px, 4px);
+}
+
+.nb-tag {
+  border: 2px solid var(--border);
+  box-shadow: 2px 2px 0px var(--shadow-color);
+  font-weight: 700;
+  padding: 4px 12px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Decorative zigzag border */
+.nb-zigzag {
+  position: relative;
+}
+
+.nb-zigzag::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: linear-gradient(135deg, var(--background) 33.33%, transparent 33.33%) 0 0,
+    linear-gradient(225deg, var(--background) 33.33%, transparent 33.33%) 0 0;
+  background-size: 20px 100%;
+  background-position: center bottom;
 }
