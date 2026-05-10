@@ -74,11 +74,14 @@ export default function ParallaxText({
           easings: "eas",
         },
       }}
-      className="m-0 flex flex-nowrap overflow-hidden whitespace-nowrap leading-[0.8] tracking-[-2px]"
+      className="m-0 flex flex-nowrap overflow-hidden whitespace-nowrap leading-[0.8] tracking-[-2px] py-2 border-y-[3px] border-[--border]"
+      style={{
+        background: direction > 0 ? 'var(--accent)' : 'var(--accent-blue)',
+      }}
     >
       <motion.div
         style={{ x }}
-        className="flex flex-nowrap whitespace-nowrap text-2xl font-semibold uppercase md:text-6xl"
+        className="flex flex-nowrap whitespace-nowrap text-2xl font-black uppercase md:text-6xl text-[--foreground]"
       >
         <motion.span
           style={{ skew: skewVelocityFactor }}

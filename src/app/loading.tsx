@@ -5,77 +5,32 @@ import { motion } from "framer-motion"
 export default function Loading() {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center" style={{ background: 'var(--background)' }}>
-      {/* Decorative background elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <div className="relative z-10 flex flex-col items-center gap-8">
+        {/* Main Loader - Neobrutalism style */}
         <motion.div
-          className="absolute top-20 left-10 w-72 h-72 rounded-full blur-3xl"
-          style={{ background: 'var(--primary)', opacity: 0.08 }}
+          className="relative w-24 h-24 flex items-center justify-center"
+          style={{
+            border: 'var(--nb-border)',
+            boxShadow: 'var(--nb-shadow-lg)',
+            background: 'var(--accent)',
+          }}
           animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.08, 0.15, 0.08],
+            rotate: [0, 0, 90, 90, 180, 180, 270, 270, 360],
           }}
           transition={{
             duration: 3,
             repeat: Infinity,
             ease: "easeInOut",
           }}
-        />
-        <motion.div
-          className="absolute bottom-20 right-10 w-96 h-96 rounded-full blur-3xl"
-          style={{ background: 'var(--secondary)', opacity: 0.08 }}
-          animate={{
-            scale: [1, 1.3, 1],
-            opacity: [0.08, 0.15, 0.08],
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 0.5,
-          }}
-        />
-      </div>
-
-      <div className="relative z-10 flex flex-col items-center gap-6">
-        {/* Main Loader - Spinning Ring */}
-        <div className="relative w-20 h-20">
-          {/* Outer spinning ring */}
+        >
           <motion.div
-            className="absolute inset-0 rounded-full border-4 border-transparent"
-            style={{ 
-              borderTopColor: 'var(--primary)',
-              borderRightColor: 'var(--primary)'
+            className="w-12 h-12"
+            style={{
+              border: 'var(--nb-border)',
+              background: 'var(--accent-pink)',
             }}
-            animate={{ rotate: 360 }}
-            transition={{
-              duration: 1,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          />
-          
-          {/* Inner spinning ring - opposite direction */}
-          <motion.div
-            className="absolute inset-2 rounded-full border-4 border-transparent"
-            style={{ 
-              borderBottomColor: 'var(--secondary)',
-              borderLeftColor: 'var(--secondary)'
-            }}
-            animate={{ rotate: -360 }}
-            transition={{
-              duration: 1.5,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          />
-          
-          {/* Center pulsing dot */}
-          <motion.div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full"
-            style={{ background: 'var(--primary)' }}
             animate={{
-              scale: [1, 1.5, 1],
-              opacity: [0.5, 1, 0.5],
+              scale: [1, 0.5, 1],
             }}
             transition={{
               duration: 1.5,
@@ -83,24 +38,43 @@ export default function Loading() {
               ease: "easeInOut",
             }}
           />
-        </div>
+        </motion.div>
 
-        {/* Animated dots indicator */}
-        <div className="flex gap-2">
-          {[0, 1, 2].map((index) => (
+        {/* Loading text */}
+        <motion.p
+          className="text-lg font-black uppercase tracking-widest"
+          style={{ color: 'var(--foreground)' }}
+          animate={{
+            opacity: [1, 0.4, 1],
+          }}
+          transition={{
+            duration: 1.5,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        >
+          Loading...
+        </motion.p>
+
+        {/* Animated blocks */}
+        <div className="flex gap-3">
+          {[0, 1, 2, 3].map((index) => (
             <motion.div
               key={index}
-              className="w-3 h-3 rounded-full"
-              style={{ background: 'var(--primary)' }}
+              className="w-5 h-5"
+              style={{
+                border: '2px solid var(--border)',
+                background: ['var(--accent)', 'var(--accent-pink)', 'var(--accent-blue)', 'var(--accent-orange)'][index],
+              }}
               animate={{
-                scale: [1, 1.3, 1],
-                opacity: [0.4, 1, 0.4],
+                y: [0, -15, 0],
+                scale: [1, 1.2, 1],
               }}
               transition={{
-                duration: 1,
+                duration: 0.8,
                 repeat: Infinity,
                 ease: "easeInOut",
-                delay: index * 0.2,
+                delay: index * 0.15,
               }}
             />
           ))}

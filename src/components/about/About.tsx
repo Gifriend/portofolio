@@ -13,25 +13,40 @@ export default function About() {
       className="relative mb-10 flex min-h-screen w-full items-center justify-center overflow-hidden mt-10"
     >
       <div className="mx-auto flex w-[90%] flex-col items-start justify-center lg:max-w-[1212.8px]">
-        <div className="mb-10 flex w-full items-center justify-between gap-x-2 md:mb-16">
+        <div className="mb-10 flex w-full items-center justify-between gap-x-4 md:mb-16">
           <AnimateTitle
             title={"Get to know me"}
-            className="text-left text-[40px] font-bold leading-[0.9em] tracking-tighter sm:text-[45px] md:text-[60px] lg:text-[80px]"
+            className="text-left text-[40px] font-black leading-[0.9em] tracking-tighter uppercase sm:text-[45px] md:text-[60px] lg:text-[80px]"
             wordSpace="mr-[14px]"
             charSpace="mr-[0.0001em]"
           />
-          <Image
-            src={"/imageProfile.jpg"}
-            width={150}
-            height={150}
-            priority
-            alt="Gifriend Yedija talumingan"
-            className="relative h-[50px] w-[50px] rounded-full object-cover grayscale hover:grayscale-0 md:w-[100px] md:h-[100px] lg:w-[145px] lg:h-[145px]"
-          />
+          <div
+            className="relative shrink-0"
+            style={{
+              border: 'var(--nb-border)',
+              boxShadow: 'var(--nb-shadow)',
+            }}
+          >
+            <Image
+              src={"/imageProfile.jpg"}
+              width={150}
+              height={150}
+              priority
+              alt="Gifriend Yedija talumingan"
+              className="h-[60px] w-[60px] object-cover grayscale hover:grayscale-0 md:w-[100px] md:h-[100px] lg:w-[145px] lg:h-[145px] transition-all duration-300"
+            />
+          </div>
         </div>
 
         <div className="mx-auto flex w-full flex-col lg:max-w-[1200px] lg:flex-row lg:gap-20">
-          <div className="lg:mg-16 mb-10 flex w-full flex-col gap-4 text-[23px] font-medium leading-relaxed tracking-wide md:mb-16 md:gap-6 md:text-[25px] md:leading-relaxed lg:max-w-[90%] lg:text-base">
+          <div
+            className="lg:mg-16 mb-10 flex w-full flex-col gap-4 text-[18px] font-medium leading-relaxed tracking-wide md:mb-16 md:gap-6 md:text-[20px] md:leading-relaxed lg:max-w-[90%] lg:text-base p-6 md:p-8"
+            style={{
+              border: 'var(--nb-border)',
+              boxShadow: 'var(--nb-shadow-lg)',
+              background: 'var(--card-bg)',
+            }}
+          >
             <AnimateParagraph
               paragraph="My name is Gifriend Yedija Talumingan, a final-year Informatics Engineering student at Sam Ratulangi University with a strong passion for Software Development. I enjoy building scalable, user-focused digital solutions across multiple platforms including web and mobile applications. Throughout my academic journey and project experience, I have worked on various systems ranging from real-time applications and organizational platforms to operational tools used in real industry environments."
               delay={0.2}

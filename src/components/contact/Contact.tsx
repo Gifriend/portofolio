@@ -18,10 +18,18 @@ export default function Contact() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight mb-6">
             Get In Touch
           </h2>
-          <p className="text-lg max-w-2xl mx-auto">
+          <p
+            className="text-lg max-w-2xl mx-auto font-medium px-6 py-3 inline-block"
+            style={{
+              border: 'var(--nb-border)',
+              boxShadow: 'var(--nb-shadow)',
+              background: 'var(--accent)',
+              color: 'var(--foreground)',
+            }}
+          >
             Have a project in mind or want to collaborate? Feel free to reach out!
           </p>
         </motion.div>

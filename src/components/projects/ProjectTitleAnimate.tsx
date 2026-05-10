@@ -1,7 +1,6 @@
 "use client"
 
 import { useAnimation, useInView, motion } from "framer-motion"
-import { Sparkles } from "lucide-react"
 import { useEffect, useRef } from "react"
 
 export default function ProjectTitleAnimate() {
@@ -40,10 +39,20 @@ export default function ProjectTitleAnimate() {
       variants={projectTitleAnimation}
       className="flex w-full items-center justify-between mb-10 md:mb-16"
     >
-      <h2 className="text-4xl font-bold md:text-5xl lg:text-7xl">
+      <h2 className="text-4xl font-black uppercase tracking-tight md:text-5xl lg:text-7xl">
         Recent Projects
       </h2>
-      <Sparkles className="h-9 w-9 md:h-11 md:w-11 lg:h-16 lg:w-16" />
+      <div
+        className="px-4 py-2 text-lg font-black uppercase md:text-xl"
+        style={{
+          border: 'var(--nb-border)',
+          boxShadow: 'var(--nb-shadow)',
+          background: 'var(--accent-orange)',
+          color: 'var(--foreground)',
+        }}
+      >
+        ✦ {8} Works
+      </div>
     </motion.div>
   )
 }
