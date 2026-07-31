@@ -1,6 +1,6 @@
 {
   "name": "portonext",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
@@ -19,9 +19,10 @@
     "clsx": "^2.1.1",
     "framer-motion": "^12.15.0",
     "gsap": "^3.13.0",
+    "latest": "^0.2.0",
     "lenis": "^1.3.8",
     "lucide-react": "^0.539.0",
-    "next": "^16.0.10",
+    "next": "^16.2.11",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "tailwind-merge": "^3.2.0"

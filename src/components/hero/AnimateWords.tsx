@@ -3,13 +3,14 @@
 import { motion, useInView } from "framer-motion"
 import { useEffect, useRef } from "react"
 import { useAnimation } from "framer-motion"
+import { cn } from "@/lib/utils"
 
 interface AnimateWordsProps {
   title: string
-  style: string
+  className?: string
 }
 
-export const AnimateWords = ({ title, style }: AnimateWordsProps) => {
+export const AnimateWords = ({ title, className }: AnimateWordsProps) => {
   const ctrls = useAnimation()
   const ref = useRef(null)
   const inView = useInView(ref)
@@ -23,15 +24,15 @@ export const AnimateWords = ({ title, style }: AnimateWordsProps) => {
   const wordAnimation = {
     initial: {
       opacity: 0,
-      y: 150,
+      y: 80,
     },
     animate: {
       opacity: 1,
       y: 0,
       transition: {
-        delay: 0.8,
-        ease: [0.2, 0.65, 0.3, 0.9],
-        duration: 1,
+        delay: 0.2,
+        ease: [0.16, 1, 0.3, 1], // premium out-expo easing
+        duration: 1.2,
       },
     },
   }
@@ -40,10 +41,10 @@ export const AnimateWords = ({ title, style }: AnimateWordsProps) => {
     <h1 aria-label={title} role="heading">
       <motion.span
         ref={ref}
-        className="flex flex-col overflow-hidden text-center text-[56px] font-black leading-[0.85em] tracking-[-0.03em] uppercase sm:text-[80px] sm:leading-[0.85em] md:text-[115.5px] lg:text-[175px]"
-        style={{
-          WebkitTextStroke: '2px var(--foreground)',
-        }}
+        className={cn(
+          "flex flex-col overflow-hidden text-center text-[42px] font-black leading-[1.05em] tracking-tight uppercase sm:text-[64px] md:text-[85px] lg:text-[120px] xl:text-[140px]",
+          className
+        )}
       >
         {title.split(" ").map((word, index) => (
           <motion.div
@@ -51,13 +52,13 @@ export const AnimateWords = ({ title, style }: AnimateWordsProps) => {
             initial="initial"
             animate={ctrls}
             transition={{
-              delayChildren: index * 0.25,
+              delayChildren: index * 0.15,
               staggerChildren: 0.05,
             }}
-            className="flex items-center justify-center overflow-hidden"
+            className="flex items-center justify-center lg:justify-start overflow-hidden py-2"
           >
             <motion.span
-              className={style}
+              className="bg-clip-text text-transparent bg-gradient-to-r from-foreground via-foreground to-accent inline-block pb-2"
               variants={wordAnimation}
             >
               {word + "\u00A0"}

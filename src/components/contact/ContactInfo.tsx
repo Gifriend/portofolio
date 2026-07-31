@@ -9,14 +9,16 @@ const contactDetails = [
     label: "Email",
     value: "gifriendt@gmail.com",
     href: "mailto:gifriendt@gmail.com",
-    color: "var(--accent-pink)",
+    glowColor: "shadow-accent-pink/20 border-accent-pink/30 text-accent-pink",
+    bgClass: "bg-accent-pink/5",
   },
   {
     icon: MapPin,
     label: "Location",
     value: "Manado, North Sulawesi, Indonesia",
     href: null,
-    color: "var(--accent-blue)",
+    glowColor: "shadow-accent-blue/20 border-accent-blue/30 text-accent-blue",
+    bgClass: "bg-accent-blue/5",
   }
 ]
 
@@ -25,30 +27,30 @@ const socialMedia = [
     icon: Github,
     label: "GitHub",
     href: "https://github.com/Gifriend",
-    color: "var(--accent)",
+    hoverClass: "hover:border-accent hover:text-accent hover:shadow-accent/20",
   },
   {
     icon: Linkedin,
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/gifriendtalumingan/",
-    color: "var(--accent-blue)",
+    hoverClass: "hover:border-accent-blue hover:text-accent-blue hover:shadow-accent-blue/20",
   },
   {
     icon: Instagram,
     label: "Instagram",
     href: "https://www.instagram.com/gifriendt_/",
-    color: "var(--accent-pink)",
+    hoverClass: "hover:border-accent-pink hover:text-accent-pink hover:shadow-accent-pink/20",
   },
   {
     icon: Facebook,
     label: "Facebook",
     href: "https://www.facebook.com/gifriend",
-    color: "var(--accent-orange)",
+    hoverClass: "hover:border-accent-orange hover:text-accent-orange hover:shadow-accent-orange/20",
   }
 ]
 
 const containerVariants = {
-  hidden: { opacity: 0, x: -50 },
+  hidden: { opacity: 0, x: -30 },
   visible: {
     opacity: 1,
     x: 0,
@@ -76,82 +78,66 @@ export default function ContactInfo() {
       <div>
         <motion.h3
           variants={itemVariants}
-          className="text-2xl md:text-3xl font-black uppercase tracking-tight mb-4"
+          className="text-2xl md:text-3xl font-extrabold tracking-tight mb-4 text-foreground"
         >
           Let&apos;s Talk
         </motion.h3>
         <motion.p
           variants={itemVariants}
-          className="leading-relaxed font-medium"
+          className="leading-relaxed font-medium text-muted text-sm md:text-base"
         >
-          I&apos;m always open to discussing new projects, creative ideas, or opportunities to be part of your visions. 
-          Feel free to reach out through any of the channels below.
+          Have questions or want to discuss a potential project? Shoot me an email or find me on social networks. I am always open to new connections and collaborations.
         </motion.p>
       </div>
 
-      <motion.div variants={itemVariants} className="space-y-5">
+      <motion.div variants={itemVariants} className="space-y-4">
         {contactDetails.map((detail, index) => (
           <motion.div
             key={index}
             variants={itemVariants}
-            className="flex items-start space-x-4"
+            className="flex items-center space-x-4 p-4 rounded-2xl border border-border/40 bg-secondary/15"
           >
             <div
-              className="flex-shrink-0 w-12 h-12 flex items-center justify-center transition-all duration-200"
-              style={{
-                border: 'var(--nb-border)',
-                boxShadow: 'var(--nb-shadow)',
-                background: detail.color,
-              }}
+              className={`flex-shrink-0 w-11 h-11 rounded-xl flex items-center justify-center border shadow-md transition-all duration-300 ${detail.bgClass} ${detail.glowColor}`}
             >
-              <detail.icon className="w-5 h-5 text-[--foreground]" />
+              <detail.icon className="w-5 h-5" />
             </div>
             <div>
-              <p className="text-xs font-black uppercase tracking-wider mb-1">
+              <p className="text-[10px] font-bold uppercase tracking-wider text-muted mb-0.5">
                 {detail.label}
               </p>
               {detail.href ? (
                 <a
                   href={detail.href}
-                  className="font-semibold hover:underline underline-offset-4 decoration-[3px] decoration-[--accent] transition-colors"
+                  className="font-bold text-foreground hover:text-accent transition-colors text-sm md:text-base hover:underline underline-offset-4 decoration-2"
                 >
                   {detail.value}
                 </a>
               ) : (
-                <p className="font-semibold">{detail.value}</p>
+                <p className="font-bold text-foreground text-sm md:text-base">{detail.value}</p>
               )}
             </div>
           </motion.div>
         ))}
       </motion.div>
 
-      <motion.div variants={itemVariants} className="pt-8">
+      {/* Social Media Link Icons */}
+      <motion.div variants={itemVariants} className="pt-6">
         <h4
-          className="text-sm font-black uppercase tracking-wider mb-5 px-3 py-1.5 inline-block"
-          style={{
-            border: 'var(--nb-border)',
-            boxShadow: 'var(--nb-shadow)',
-            background: 'var(--accent-lime)',
-            color: 'var(--foreground)',
-          }}
+          className="text-xs font-bold uppercase tracking-widest text-muted mb-4"
         >
           Follow Me
         </h4>
-        <div className="flex space-x-3">
+        <div className="flex space-x-3.5">
           {socialMedia.map((social, index) => (
             <motion.a
               key={index}
               href={social.href}
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ x: -2, y: -2 }}
-              whileTap={{ x: 3, y: 3 }}
-              className="w-12 h-12 flex items-center justify-center text-[--foreground] transition-all duration-200"
-              style={{
-                border: 'var(--nb-border)',
-                boxShadow: 'var(--nb-shadow)',
-                background: social.color,
-              }}
+              whileHover={{ scale: 1.08, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              className={`w-11 h-11 flex items-center justify-center rounded-full border border-border/80 bg-secondary/30 text-foreground transition-all duration-300 shadow-sm ${social.hoverClass}`}
               aria-label={social.label}
             >
               <social.icon className="w-5 h-5" />

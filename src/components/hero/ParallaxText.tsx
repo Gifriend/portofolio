@@ -38,7 +38,7 @@ export default function ParallaxText({
   const skewVelocityFactor = useTransform(
     skewVelocity,
     [-1000, 1000],
-    [-30, 30]
+    [-15, 15] // Reduced skew intensity for a cleaner feel
   )
   const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 5], {
     clamp: false,
@@ -69,41 +69,37 @@ export default function ParallaxText({
         x: 0,
         opacity: 1,
         transition: {
-          delay: 2,
+          delay: 1.2,
           duration: 1,
-          easings: "eas",
         },
       }}
-      className="m-0 flex flex-nowrap overflow-hidden whitespace-nowrap leading-[0.8] tracking-[-2px] py-2 border-y-[3px] border-[--border]"
-      style={{
-        background: direction > 0 ? 'var(--accent)' : 'var(--accent-blue)',
-      }}
+      className="m-0 flex flex-nowrap overflow-hidden whitespace-nowrap py-3.5 border-y border-border/30 bg-secondary/5 backdrop-blur-[2px]"
     >
       <motion.div
         style={{ x }}
-        className="flex flex-nowrap whitespace-nowrap text-2xl font-black uppercase md:text-6xl text-[--foreground]"
+        className="flex flex-nowrap whitespace-nowrap text-sm font-semibold uppercase tracking-[0.2em] md:text-lg text-foreground/40"
       >
         <motion.span
           style={{ skew: skewVelocityFactor }}
-          className="mr-10 block"
+          className="mr-16 block"
         >
           {children}{" "}
         </motion.span>
         <motion.span
           style={{ skew: skewVelocityFactor }}
-          className="mr-10 block"
+          className="mr-16 block"
         >
           {children}{" "}
         </motion.span>
         <motion.span
           style={{ skew: skewVelocityFactor }}
-          className="mr-10 block"
+          className="mr-16 block"
         >
           {children}{" "}
         </motion.span>
         <motion.span
           style={{ skew: skewVelocityFactor }}
-          className="mr-10 block"
+          className="mr-16 block"
         >
           {children}{" "}
         </motion.span>

@@ -16,7 +16,7 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://gifriendt.my.id'),
+  metadataBase: new URL('https://gifriend.my.id'),
   title: {
     default: "Gifriend Talumingan - Full Stack Developer & Software Engineer",
     template: "%s | Gifriend Talumingan Portfolio"
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     "Prisma",
     "Tailwind CSS"
   ],
-  authors: [{ name: "Gifriend Yedija Talumingan", url: "https://gifriendt.my.id" }],
+  authors: [{ name: "Gifriend Yedija Talumingan", url: "https://gifriend.my.id" }],
   creator: "Gifriend Yedija Talumingan",
   publisher: "Gifriend Yedija Talumingan",
   robots: {
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://gifriendt.my.id",
+    url: "https://gifriend.my.id",
     siteName: "Gifriend Talumingan Portfolio",
     title: "Gifriend Talumingan - Full Stack Developer & Software Engineer",
     description: "Professional portfolio showcasing full stack development projects using React, Next.js, TypeScript, Flutter, NestJS and modern technologies. Explore my work in web and mobile development.",
@@ -85,11 +85,13 @@ export const metadata: Metadata = {
   icons: {
     icon: '/logo-gif.png',
     shortcut: '/logo-gif.png',
-    apple: '/logo-gif.png',
+    apple: [
+      { url: '/logo-gif.png', sizes: '180x180', type: 'image/png' },
+    ],
   },
   manifest: '/site.webmanifest',
   alternates: {
-    canonical: "https://gifriendt.my.id",
+    canonical: "https://gifriend.my.id",
   },
   category: 'technology',
 };

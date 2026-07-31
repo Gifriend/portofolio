@@ -17,11 +17,10 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const { theme, toggleTheme } = useTheme();
-  const { scrollY } = useScroll();
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 20);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -42,14 +41,11 @@ export default function Navbar() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b-[3px]",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled
-          ? "border-border shadow-[0_4px_0_var(--shadow-color)]"
-          : "border-transparent shadow-none"
+          ? "bg-background/80 backdrop-blur-md border-b border-border shadow-md py-3"
+          : "bg-background/40 backdrop-blur-sm border-b border-border/20 py-4",
       )}
-      style={{
-        backgroundColor: isScrolled ? 'var(--background)' : 'transparent',
-      }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
@@ -67,11 +63,9 @@ export default function Navbar() {
                 handleNavClick("#home");
               }}
               className={cn(
-                "text-2xl font-black uppercase tracking-tight px-3 py-1 transition-all duration-200",
-                "border-[3px] border-[--border] bg-[--accent] text-[--foreground]",
-                "shadow-[3px_3px_0px_var(--shadow-color)]",
-                "hover:shadow-[5px_5px_0px_var(--shadow-color)] hover:translate-x-[-2px] hover:translate-y-[-2px]",
-                "active:shadow-none active:translate-x-[3px] active:translate-y-[3px]",
+                "text-xl font-bold uppercase tracking-widest px-4 py-2 transition-all duration-300 rounded-lg",
+                "bg-gradient-to-r from-accent to-accent-blue text-white",
+                "shadow-lg shadow-accent/15 hover:shadow-accent/30 hover:scale-105 active:scale-95",
               )}
             >
               GIF
@@ -80,7 +74,7 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:block">
-            <div className="ml-10 flex items-center space-x-3">
+            <div className="ml-10 flex items-center space-x-2">
               {navItems.map((item, index) => (
                 <motion.a
                   key={item.name}
@@ -93,11 +87,8 @@ export default function Navbar() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 * index }}
                   className={cn(
-                    "px-4 py-2 text-sm font-bold uppercase tracking-wide transition-all duration-200",
-                    "border-[3px] border-transparent text-[--foreground]",
-                    "hover:border-[--border] hover:bg-[--accent] hover:shadow-[3px_3px_0px_var(--shadow-color)]",
-                    "hover:translate-x-[-1px] hover:translate-y-[-1px]",
-                    "active:shadow-none active:translate-x-[3px] active:translate-y-[3px]",
+                    "px-4 py-2 text-sm font-semibold tracking-wide transition-all duration-200 rounded-lg",
+                    "text-foreground/80 hover:text-foreground hover:bg-secondary/60 active:scale-95",
                   )}
                 >
                   {item.name}
@@ -111,18 +102,15 @@ export default function Navbar() {
                 transition={{ delay: 0.4 }}
                 onClick={toggleTheme}
                 className={cn(
-                  "p-2 transition-all duration-200",
-                  "border-[3px] border-[--border] bg-[--accent-pink] text-[--foreground]",
-                  "shadow-[3px_3px_0px_var(--shadow-color)]",
-                  "hover:shadow-[5px_5px_0px_var(--shadow-color)] hover:translate-x-[-2px] hover:translate-y-[-2px]",
-                  "active:shadow-none active:translate-x-[3px] active:translate-y-[3px]",
+                  "p-2 transition-all duration-300 rounded-lg border border-border bg-secondary/40 text-foreground",
+                  "hover:bg-secondary hover:scale-105 active:scale-95",
                 )}
                 aria-label="Toggle theme"
               >
                 {theme === "dark" ? (
-                  <Sun className="h-5 w-5" />
+                  <Sun className="h-5 w-5 text-accent-pink" />
                 ) : (
-                  <Moon className="h-5 w-5" />
+                  <Moon className="h-5 w-5 text-accent" />
                 )}
               </motion.button>
             </div>
@@ -132,25 +120,25 @@ export default function Navbar() {
           <div className="md:hidden flex items-center space-x-2">
             <motion.button
               onClick={toggleTheme}
-              className="p-2 border-[3px] border-[--border] bg-[--accent-pink] text-[--foreground] shadow-[3px_3px_0px_var(--shadow-color)] hover:shadow-[5px_5px_0px_var(--shadow-color)] transition-all duration-200"
+              className="p-2 border border-border bg-secondary/40 text-foreground rounded-lg transition-all duration-200"
               aria-label="Toggle theme"
             >
               {theme === "dark" ? (
-                <Sun className="block h-5 w-5" />
+                <Sun className="block h-5 w-5 text-accent-pink" />
               ) : (
-                <Moon className="block h-5 w-5" />
+                <Moon className="block h-5 w-5 text-accent" />
               )}
             </motion.button>
 
             <motion.button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 border-[3px] border-[--border] bg-[--accent-blue] text-[--foreground] shadow-[3px_3px_0px_var(--shadow-color)] hover:shadow-[5px_5px_0px_var(--shadow-color)] transition-all duration-200"
+              className="p-2 border border-border bg-secondary/40 text-foreground rounded-lg transition-all duration-200"
             >
               <span className="sr-only">Open main menu</span>
               {isOpen ? (
-                <X className="block h-6 w-6" />
+                <X className="block h-5 w-5" />
               ) : (
-                <Menu className="block h-6 w-6" />
+                <Menu className="block h-5 w-5" />
               )}
             </motion.button>
           </div>
@@ -167,7 +155,7 @@ export default function Navbar() {
         transition={{ duration: 0.3, ease: "easeInOut" }}
         className="md:hidden overflow-hidden"
       >
-        <div className="px-4 pt-2 pb-4 space-y-2 bg-[--background] border-t-[3px] border-[--border]">
+        <div className="px-4 pt-2 pb-4 space-y-2 bg-background/95 backdrop-blur-md border-t border-border">
           {navItems.map((item, index) => (
             <motion.a
               key={item.name}
@@ -180,10 +168,8 @@ export default function Navbar() {
               animate={{ opacity: isOpen ? 1 : 0, x: isOpen ? 0 : -20 }}
               transition={{ delay: isOpen ? 0.1 * index : 0 }}
               className={cn(
-                "block px-4 py-3 text-base font-bold uppercase text-[--foreground]",
-                "border-[3px] border-[--border] bg-[--background]",
-                "shadow-[3px_3px_0px_var(--shadow-color)]",
-                "hover:bg-[--accent] hover:shadow-[5px_5px_0px_var(--shadow-color)]",
+                "block px-4 py-3 text-base font-semibold text-foreground/90 rounded-lg",
+                "bg-secondary/20 hover:bg-secondary border border-border/40 hover:text-foreground",
                 "transition-all duration-200",
               )}
             >
