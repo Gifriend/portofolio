@@ -1,10 +1,10 @@
-"use client";
-import { LinkIcon } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
+"use client"
 
-import { motion, useAnimation, useInView } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { LinkIcon } from "lucide-react"
+import Image from "next/image"
+import Link from "next/link"
+import { motion, useAnimation, useInView, useMotionValue, useSpring, useTransform } from "framer-motion"
+import { useEffect, useRef } from "react"
 import {
   projectCardAnimation,
   projectCardDescriptionAnimation,
@@ -12,24 +12,15 @@ import {
   projectCardLinksAnimation,
   projectCardTechAnimation,
   projectCardTitleAnimation,
-} from "./animationCard";
+} from "./animationCard"
 
 interface ProjectCardProps {
-  title: string;
-  description: string;
-  image: string;
-  tech: string[];
-  projectLink: string;
+  title: string
+  description: string
+  image: string
+  tech: string[]
+  projectLink: string
 }
-
-const accentColors = [
-  'var(--accent)',
-  'var(--accent-pink)',
-  'var(--accent-blue)',
-  'var(--accent-orange)',
-  'var(--accent-lime)',
-  'var(--accent-purple)',
-];
 
 export default function ProjectCard({
   title,
@@ -38,123 +29,104 @@ export default function ProjectCard({
   tech,
   projectLink,
 }: ProjectCardProps) {
-  const ref = useRef(null);
-  const isInView = useInView(ref);
-  const ctrls = useAnimation();
+  const ref = useRef(null)
+  const isInView = useInView(ref)
+  const ctrls = useAnimation()
 
-  // Generate a consistent color based on title
-  const colorIndex = title.length % accentColors.length;
-  const accentColor = accentColors[colorIndex];
+  // 3D Tilt Effect Motion Values
+  const x = useMotionValue(0)
+  const y = useMotionValue(0)
+
+  // Spring settings for smooth damping physics
+  const springConfig = { damping: 25, stiffness: 150 }
+  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [7, -7]), springConfig)
+  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-7, 7]), springConfig)
 
   useEffect(() => {
     if (isInView) {
-      ctrls.start("visible");
+      ctrls.start("visible")
     }
-  }, [ctrls, isInView]);
+  }, [ctrls, isInView])
+
+  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const rect = event.currentTarget.getBoundingClientRect()
+    const width = rect.width
+    const height = rect.height
+    const mouseX = event.clientX - rect.left - width / 2
+    const mouseY = event.clientY - rect.top - height / 2
+    x.set(mouseX / width)
+    y.set(mouseY / height)
+  }
+
+  const handleMouseLeave = () => {
+    x.set(0)
+    y.set(0)
+  }
 
   return (
-    <Link href={projectLink}>
+    <Link href={projectLink} className="block w-full">
       <motion.div
         ref={ref}
         animate={ctrls}
         initial="hidden"
         variants={projectCardAnimation}
-        aria-hidden="true"
-        className="group relative z-10 h-auto min-h-[550px] md:h-[550px] w-full flex flex-col md:flex-row items-stretch justify-center overflow-hidden transition-all duration-200"
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
         style={{
-          border: 'var(--nb-border)',
-          boxShadow: 'var(--nb-shadow-lg)',
-          background: 'var(--card-bg)',
+          rotateX,
+          rotateY,
+          transformStyle: "preserve-3d",
         }}
-        whileHover={{
-          x: -4,
-          y: -4,
-          boxShadow: "10px 10px 0px var(--shadow-color)",
-        }}
+        className="group relative z-10 w-full min-h-[500px] md:h-[480px] flex flex-col md:flex-row items-stretch justify-center rounded-3xl glass-panel border border-border/50 overflow-hidden transition-all duration-300 hover:border-accent/40"
       >
-        {/* Accent top bar */}
-        <div
-          className="absolute top-0 left-0 right-0 h-2 z-30"
-          style={{ background: accentColor }}
-        />
+        {/* Glow overlay inside the card */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-accent/0 via-accent/0 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
         {/* Content Section */}
-        <div className="relative z-20 flex flex-col justify-between p-6 md:p-8 lg:p-10 w-full md:w-1/2 pt-8">
-          {/* Header with icons */}
+        <div 
+          style={{ transform: "translateZ(30px)" }}
+          className="relative z-20 flex flex-col justify-between p-6 md:p-10 w-full md:w-1/2"
+        >
+          {/* Header Link Info */}
           <motion.div
-            ref={ref}
-            animate={ctrls}
-            initial="hidden"
             variants={projectCardLinksAnimation}
-            aria-hidden="true"
-            className="flex items-center justify-start gap-4 mb-6"
+            className="flex items-center justify-start gap-4 mb-4"
           >
             <span
-              className="p-2.5 transition-all duration-200"
-              style={{
-                border: 'var(--nb-border)',
-                boxShadow: 'var(--nb-shadow)',
-                background: accentColor,
-              }}
+              className="p-2.5 rounded-xl bg-secondary border border-border text-foreground hover:text-accent transition-all duration-300 shadow-sm"
               aria-label="Open Live Demo"
             >
-              <LinkIcon className="h-5 w-5 md:h-6 md:w-6 text-[--foreground]" />
+              <LinkIcon className="h-5 w-5 text-foreground" />
             </span>
             <span
-              className="text-xs font-black uppercase tracking-widest px-3 py-1"
-              style={{
-                border: '2px solid var(--border)',
-                background: 'var(--card-bg)',
-              }}
+              className="text-[10px] font-bold uppercase tracking-widest px-3 py-1 bg-secondary/50 rounded-full border border-border/40 text-muted"
             >
-              Live Project →
+              Live Project
             </span>
           </motion.div>
 
-          {/* Text Content */}
+          {/* Text Info */}
           <div className="flex-1 flex flex-col justify-center space-y-4">
-            <h3 className="text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-tight leading-tight text-foreground max-w-full">
-              <motion.span
-                ref={ref}
-                animate={ctrls}
-                initial="hidden"
-                variants={projectCardTitleAnimation}
-                aria-hidden="true"
-                className="text-foreground"
-              >
+            <h3 className="text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight leading-tight text-foreground">
+              <motion.span variants={projectCardTitleAnimation} className="block">
                 {title}
               </motion.span>
             </h3>
 
-            <p className="text-sm md:text-base font-medium text-foreground max-w-full leading-relaxed">
-              <motion.span
-                ref={ref}
-                animate={ctrls}
-                initial="hidden"
-                variants={projectCardDescriptionAnimation}
-                aria-hidden="true"
-              >
+            <p className="text-sm md:text-base font-medium text-muted leading-relaxed">
+              <motion.span variants={projectCardDescriptionAnimation} className="block">
                 {description}
               </motion.span>
             </p>
 
             <motion.div
-              ref={ref}
-              animate={ctrls}
-              initial="hidden"
               variants={projectCardTechAnimation}
-              aria-hidden="true"
-              className="flex flex-wrap gap-2 md:gap-3 pt-2"
+              className="flex flex-wrap gap-2 pt-2"
             >
               {tech.map((techItem, index) => (
                 <span
                   key={index}
-                  className="px-3 py-1.5 text-xs font-black uppercase tracking-wide text-[--foreground] transition-all duration-200"
-                  style={{
-                    border: '2px solid var(--border)',
-                    boxShadow: '2px 2px 0px var(--shadow-color)',
-                    background: index % 2 === 0 ? 'var(--card-bg)' : accentColor,
-                  }}
+                  className="px-3 py-1 text-xs font-semibold rounded-full border border-border/40 bg-secondary/40 text-foreground/80 hover:bg-secondary transition-all duration-200"
                 >
                   {techItem}
                 </span>
@@ -165,31 +137,24 @@ export default function ProjectCard({
 
         {/* Image Section */}
         <motion.div
-          ref={ref}
-          animate={ctrls}
-          initial="hidden"
           variants={projectCardImageAnimation}
-          aria-hidden="true"
-          className="relative w-full md:w-1/2 h-[250px] md:h-full flex items-center justify-center p-4 md:p-6"
+          style={{ transform: "translateZ(40px)" }}
+          className="relative w-full md:w-1/2 h-[260px] md:h-full flex items-center justify-center p-6 bg-secondary/10"
         >
           <div
-            className="relative w-full h-full overflow-hidden transition-all duration-200"
-            style={{
-              border: 'var(--nb-border)',
-              boxShadow: 'var(--nb-shadow)',
-            }}
+            className="relative w-full h-full overflow-hidden rounded-2xl border border-border/40 shadow-inner bg-background/50 flex items-center justify-center"
           >
             <Image
               width={1000}
               height={600}
               src={image}
               alt={title}
-              className="w-full h-full object-cover md:object-contain group-hover:scale-105 transition-transform duration-500"
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               loading="lazy"
             />
           </div>
         </motion.div>
       </motion.div>
     </Link>
-  );
+  )
 }

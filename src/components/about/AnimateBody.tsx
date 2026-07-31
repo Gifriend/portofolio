@@ -1,56 +1,56 @@
-"use client";
-import { useAnimation, useInView } from "framer-motion";
-import { useEffect, useRef } from "react";
-import { motion } from "framer-motion";
-import Image from "next/image";
+"use client"
+
+import { useAnimation, useInView } from "framer-motion"
+import { useEffect, useRef } from "react"
+import { motion } from "framer-motion"
+import Image from "next/image"
+import { Smartphone, Monitor, Database, Settings } from "lucide-react"
 
 interface AnimateBodyProps {
-  text: string;
-  className?: string;
-  delay?: number;
+  text: string
+  delay?: number
 }
 
 interface Tech {
-  id: number;
-  name: string;
-  imageUrl: string;
+  id: number
+  name: string
+  imageUrl: string
 }
 
 interface TechCategory {
-  title: string;
-  color: string;
-  techs: Tech[];
+  title: string
+  color: string
+  gradient: string
+  icon: React.ComponentType<{ className?: string }>
+  techs: Tech[]
 }
 
-export default function AnimateBody({
-  text,
-  delay,
-}: AnimateBodyProps) {
-  const ref = useRef(null);
-  const inView = useInView(ref);
-  const ctrls = useAnimation();
+export default function AnimateBody({ text, delay }: AnimateBodyProps) {
+  const ref = useRef(null)
+  const inView = useInView(ref)
+  const ctrls = useAnimation()
 
   const bodyAnimation = {
     hidden: {
       opacity: 0,
-      y: `0.5em`,
+      y: 20,
     },
     visible: {
       opacity: 1,
-      y: `0em`,
+      y: 0,
       transition: {
         duration: 0.6,
         delay: delay,
-        ease: [0.2, 0.65, 0.3, 0.9],
+        ease: [0.16, 1, 0.3, 1],
       },
     },
-  };
+  }
 
   const cardAnimation = {
     hidden: {
       opacity: 0,
-      scale: 0.8,
-      y: 20,
+      scale: 0.95,
+      y: 10,
     },
     visible: (index: number) => ({
       opacity: 1,
@@ -58,16 +58,18 @@ export default function AnimateBody({
       y: 0,
       transition: {
         duration: 0.4,
-        delay: index * 0.05,
-        ease: [0.2, 0.65, 0.3, 0.9],
+        delay: index * 0.03,
+        ease: [0.16, 1, 0.3, 1],
       },
     }),
-  };
+  }
 
   const techCategories: TechCategory[] = [
     {
       title: "Mobile Development",
-      color: "var(--accent-pink)",
+      color: "text-accent-pink",
+      gradient: "from-accent-pink/10 via-transparent to-transparent",
+      icon: Smartphone,
       techs: [
         { id: 1, name: "Flutter", imageUrl: "/flutter.png" },
         { id: 2, name: "Dart", imageUrl: "/dart.png" },
@@ -75,7 +77,9 @@ export default function AnimateBody({
     },
     {
       title: "Frontend Development",
-      color: "var(--accent)",
+      color: "text-accent",
+      gradient: "from-accent/10 via-transparent to-transparent",
+      icon: Monitor,
       techs: [
         { id: 3, name: "Next.js", imageUrl: "/next.svg" },
         { id: 4, name: "Vite", imageUrl: "/vite-logo.png" },
@@ -110,7 +114,9 @@ export default function AnimateBody({
     },
     {
       title: "Backend Development",
-      color: "var(--accent-blue)",
+      color: "text-accent-blue",
+      gradient: "from-accent-blue/10 via-transparent to-transparent",
+      icon: Database,
       techs: [
         { id: 10, name: "NestJS", imageUrl: "/Nest.js.png" },
         { id: 11, name: "Laravel", imageUrl: "/Laravel.svg" },
@@ -121,91 +127,89 @@ export default function AnimateBody({
     },
     {
       title: "Tools & Services",
-      color: "var(--accent-lime)",
+      color: "text-accent-lime",
+      gradient: "from-accent-lime/10 via-transparent to-transparent",
+      icon: Settings,
       techs: [
         { id: 15, name: "Firebase", imageUrl: "/firebase.png" },
         { id: 16, name: "Supabase", imageUrl: "/Supabase.svg" },
       ],
     },
-  ];
+  ]
 
   useEffect(() => {
     if (inView) {
-      ctrls.start("visible");
+      ctrls.start("visible")
     }
-  }, [ctrls, inView]);
+  }, [ctrls, inView])
 
   return (
-    <>
+    <div className="py-6" ref={ref}>
       <motion.p
         role="heading"
-        className="text-2xl font-black uppercase tracking-tight text-start md:text-3xl lg:text-4xl xl:text-5xl mb-4"
+        className="text-xl font-bold uppercase tracking-widest text-start mb-6 text-foreground"
         aria-hidden="true"
         initial="hidden"
         animate={ctrls}
         variants={bodyAnimation}
-        ref={ref}
       >
         {text}
       </motion.p>
-      <div className="py-8 space-y-10">
+      
+      {/* Bento Layout of Skill Categories */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
         {techCategories.map((category, categoryIndex) => (
-          <div key={categoryIndex}>
-            {/* Category Title */}
-            <h3
-              className="mb-6 text-lg font-black uppercase tracking-wider md:text-xl px-4 py-2 inline-block"
-              style={{
-                border: 'var(--nb-border)',
-                boxShadow: 'var(--nb-shadow)',
-                background: category.color,
-                color: 'var(--foreground)',
-              }}
-            >
-              {category.title}
-            </h3>
+          <motion.div
+            key={categoryIndex}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
+            className="rounded-3xl glass-panel p-6 flex flex-col justify-between overflow-hidden relative group hover:border-foreground/20 transition-all duration-300"
+          >
+            {/* Ambient Corner Gradient */}
+            <div className={`absolute top-0 left-0 w-32 h-32 bg-gradient-to-br ${category.gradient} rounded-full blur-xl pointer-events-none`} />
 
-            {/* Skills Grid */}
-            <div className="grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-4 mt-4">
-              {category.techs.map((item, index) => (
-                <motion.div
-                  key={item.id}
-                  custom={index}
-                  initial="hidden"
-                  animate="visible"
-                  variants={cardAnimation}
-                  whileHover={{
-                    y: -4,
-                    x: -2,
-                    boxShadow: "6px 6px 0px var(--shadow-color)",
-                  }}
-                >
-                  <div
-                    className="flex items-center gap-3 px-4 py-3 transition-all duration-200"
-                    style={{
-                      border: 'var(--nb-border)',
-                      boxShadow: 'var(--nb-shadow)',
-                      background: 'var(--card-bg)',
-                    }}
+            <div>
+              {/* Category Header */}
+              <div className="flex items-center gap-3 mb-6">
+                <div className={`p-2.5 rounded-xl bg-secondary/50 ${category.color} border border-border/30`}>
+                  <category.icon className="w-5 h-5" />
+                </div>
+                <h3 className="text-sm font-bold uppercase tracking-wider text-foreground">
+                  {category.title}
+                </h3>
+              </div>
+
+              {/* Skills List as Glowing Pill Tags */}
+              <div className="flex flex-wrap gap-3">
+                {category.techs.map((item, index) => (
+                  <motion.div
+                    key={item.id}
+                    custom={index}
+                    initial="hidden"
+                    animate={ctrls}
+                    variants={cardAnimation}
+                    whileHover={{ scale: 1.05 }}
+                    className="flex items-center gap-2.5 px-4 py-2 border border-border/60 bg-secondary/20 hover:bg-secondary/60 text-foreground text-xs font-semibold rounded-2xl transition-all duration-300"
                   >
-                    <div className="flex h-10 w-10 items-center justify-center shrink-0">
+                    <div className="flex h-5 w-5 items-center justify-center shrink-0">
                       <Image
                         alt={item.name}
-                        width={40}
-                        height={40}
+                        width={20}
+                        height={20}
                         src={item.imageUrl}
+                        className="object-contain"
                       />
                     </div>
-
-                    <span className="font-bold text-foreground uppercase tracking-wide text-sm">
-                      {item.name}
-                    </span>
-                  </div>
-                </motion.div>
-              ))}
+                    <span>{item.name}</span>
+                  </motion.div>
+                ))}
+              </div>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
-    </>
-  );
+    </div>
+  )
 }

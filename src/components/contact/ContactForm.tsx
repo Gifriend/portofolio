@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Send } from "lucide-react"
+import { Send, CheckCircle2, AlertCircle } from "lucide-react"
 import { useState } from "react"
 
 export default function ContactForm() {
@@ -61,26 +61,23 @@ export default function ContactForm() {
     }
   }
 
-  const inputClasses = "w-full px-4 py-3 border-[3px] border-[--border] bg-[--background] text-[--foreground] font-medium shadow-[3px_3px_0px_var(--shadow-color)] focus:shadow-[5px_5px_0px_var(--shadow-color)] focus:translate-x-[-2px] focus:translate-y-[-2px] transition-all duration-200 outline-none placeholder:text-[--muted] placeholder:font-medium"
+  const inputClasses = "w-full px-4 py-3 border border-border/60 bg-secondary/20 hover:bg-secondary/30 focus:bg-background/80 focus:border-accent/60 text-foreground font-semibold rounded-xl transition-all duration-300 outline-none placeholder:text-muted/60 placeholder:font-medium text-sm"
 
   return (
     <motion.div
       initial={{ opacity: 0, x: 50 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-      className="p-8"
-      style={{
-        border: 'var(--nb-border)',
-        boxShadow: 'var(--nb-shadow-lg)',
-        background: 'var(--card-bg)',
-      }}
+      transition={{ duration: 0.8 }}
+      className="p-8 rounded-3xl glass-panel relative overflow-hidden"
     >
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <div className="absolute top-0 right-0 w-32 h-32 bg-accent/5 rounded-full blur-xl pointer-events-none" />
+      
+      <form onSubmit={handleSubmit} className="space-y-5">
         <div>
           <label
             htmlFor="name"
-            className="block text-sm font-black uppercase tracking-wider text-foreground mb-2"
+            className="block text-xs font-bold uppercase tracking-wider text-muted mb-1.5"
           >
             Name
           </label>
@@ -99,7 +96,7 @@ export default function ContactForm() {
         <div>
           <label
             htmlFor="email"
-            className="block text-sm font-black uppercase tracking-wider text-foreground mb-2"
+            className="block text-xs font-bold uppercase tracking-wider text-muted mb-1.5"
           >
             Email
           </label>
@@ -118,7 +115,7 @@ export default function ContactForm() {
         <div>
           <label
             htmlFor="subject"
-            className="block text-sm font-black uppercase tracking-wider text-foreground mb-2"
+            className="block text-xs font-bold uppercase tracking-wider text-muted mb-1.5"
           >
             Subject
           </label>
@@ -137,7 +134,7 @@ export default function ContactForm() {
         <div>
           <label
             htmlFor="message"
-            className="block text-sm font-black uppercase tracking-wider text-foreground mb-2"
+            className="block text-xs font-bold uppercase tracking-wider text-muted mb-1.5"
           >
             Message
           </label>
@@ -147,7 +144,7 @@ export default function ContactForm() {
             value={formData.message}
             onChange={handleChange}
             required
-            rows={6}
+            rows={5}
             className={`${inputClasses} resize-none`}
             placeholder="Tell me about your project..."
           />
@@ -157,15 +154,10 @@ export default function ContactForm() {
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="p-4 text-sm font-bold"
-            style={{
-              border: '3px solid #22c55e',
-              boxShadow: '4px 4px 0px #166534',
-              background: '#dcfce7',
-              color: '#166534',
-            }}
+            className="p-4 rounded-xl text-sm font-semibold border border-emerald-500/30 bg-emerald-500/10 text-emerald-500 flex items-center gap-2"
           >
-            ✓ Message sent successfully! I'll get back to you soon.
+            <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
+            <span>Message sent successfully! I&apos;ll get back to you soon.</span>
           </motion.div>
         )}
 
@@ -173,39 +165,27 @@ export default function ContactForm() {
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="p-4 text-sm font-bold"
-            style={{
-              border: '3px solid #ef4444',
-              boxShadow: '4px 4px 0px #991b1b',
-              background: '#fee2e2',
-              color: '#991b1b',
-            }}
+            className="p-4 rounded-xl text-sm font-semibold border border-red-500/30 bg-red-500/10 text-red-500 flex items-center gap-2"
           >
-            ✗ Something went wrong. Please try again or email me directly.
+            <AlertCircle className="w-5 h-5 flex-shrink-0" />
+            <span>Something went wrong. Please try again later.</span>
           </motion.div>
         )}
 
-        <motion.button
+        <button
           type="submit"
           disabled={isSubmitting}
-          whileHover={{ x: -3, y: -3 }}
-          whileTap={{ x: 4, y: 4 }}
-          className="w-full px-8 py-4 font-black uppercase tracking-wider text-[--foreground] flex items-center justify-center space-x-3 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
-          style={{
-            border: 'var(--nb-border)',
-            boxShadow: 'var(--nb-shadow-lg)',
-            background: 'var(--accent)',
-          }}
+          className="w-full px-6 py-4 font-bold text-white rounded-xl bg-gradient-to-r from-accent to-accent-blue hover:brightness-110 shadow-lg shadow-accent/20 transition-all duration-300 flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed active:scale-[0.98] cursor-pointer"
         >
           {isSubmitting ? (
             <span>Sending...</span>
           ) : (
             <>
               <span>Send Message</span>
-              <Send className="w-5 h-5" />
+              <Send className="w-4 h-4" />
             </>
           )}
-        </motion.button>
+        </button>
       </form>
     </motion.div>
   )

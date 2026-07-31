@@ -4,48 +4,42 @@ import { motion } from "framer-motion"
 import HeroText from "./HeroText"
 import ParallaxText from "./ParallaxText"
 import HeroGraphic from "./HeroGraphic"
+import HeroProfileCard from "./HeroProfileCard"
 
 export default function Hero() {
   return (
     <motion.section
-      id="hero"
-      className="relative z-10 flex min-h-screen w-full flex-col items-center justify-center overflow-hidden"
+      id="home"
+      className="relative flex min-h-screen w-full flex-col justify-between overflow-hidden bg-background bg-grid-pattern pt-28 pb-12"
       initial="initial"
       animate="animate"
     >
-      <HeroGraphic />
-      <HeroText />
-      <div className="mt-10 w-full overflow-hidden">
-        <ParallaxText direction={500} baseVelocity={-1}>
-          Mobile Developer Frontend Web Developer Backend Web Developer
-        </ParallaxText>
-        <ParallaxText direction={-500} baseVelocity={1}>
-          Mobile Developer Frontend Web Developer Backend Web Developer
+      {/* Background radial gradient glow spots */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute top-10 left-10 w-56 h-56 rounded-full bg-accent/10 blur-[100px] dark:bg-accent/5" />
+        <div className="absolute bottom-10 right-10 w-72 h-72 rounded-full bg-accent-blue/10 blur-[120px] dark:bg-accent-blue/5" />
+      </div>
+
+      {/* Lightweight Ambient 3D canvas behind the columns */}
+      <div className="absolute inset-0 w-full h-full z-10 opacity-20 md:opacity-30 pointer-events-auto">
+        <HeroGraphic />
+      </div>
+
+      {/* Main Grid: Split Layout */}
+      <div className="relative z-20 w-[90%] lg:max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-50 items-center my-auto pointer-events-none select-none">
+        {/* Left Side: Copywriting */}
+        <HeroText />
+        
+        {/* Right Side: Interactive 3D Profile ID Card */}
+        <HeroProfileCard />
+      </div>
+
+      {/* Scrolling Text lanes */}
+      <div className="w-full overflow-hidden z-20 mt-8">
+        <ParallaxText direction={200} baseVelocity={-0.4}>
+          Creative Developer UI/UX Architect Web Engineer Mobile Tech Solutions System Analyst
         </ParallaxText>
       </div>
-      <motion.div
-        initial={{ opacity: 0, x: -500 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 1, delay: 2 }}
-        className="absolute left-0 top-[50%] hidden h-auto w-[280px] flex-col items-start justify-center px-6 py-5 lg:flex"
-        style={{
-          border: 'var(--nb-border)',
-          boxShadow: 'var(--nb-shadow-lg)',
-          background: 'var(--accent)',
-          color: 'var(--foreground)',
-          borderRadius: '0 12px 12px 0',
-        }}
-      >
-        <p className="text-sm font-black uppercase tracking-wider">
-          📍 Located in
-        </p>
-        <p className="text-lg font-bold">
-          Manado
-        </p>
-        <p className="text-sm font-semibold">
-          North Sulawesi, Indonesia
-        </p>
-      </motion.div>
     </motion.section>
   )
 }
